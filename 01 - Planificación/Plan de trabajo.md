@@ -8,8 +8,8 @@ Volver a [[Inicio]] · Tareas en [[Tablero de tareas]]
 - [ ] Reunión de kick-off (usar plantilla de reunión)
 
 ## Fase 1 — Análisis
-- [ ] Analizar el SBIT de Educación: qué funciones tiene, qué usuarios, qué datos
-- [ ] Redactar [[Requisitos funcionales]] y no funcionales
+- [x] Analizar el SBIT de Educación → [[Análisis SBIT]]
+- [x] Primera versión de [[Requisitos funcionales]] y no funcionales
 - [ ] Definir perfiles de usuario y casos de uso
 - [ ] Priorizar funciones (MVP vs. extras)
 
