@@ -14,10 +14,11 @@ Volver a [[Inicio]] · Tareas en [[Tablero de tareas]]
 - [ ] Priorizar funciones (MVP vs. extras)
 
 ## Fase 2 — Diseño
-- [ ] Elegir stack → [[Arquitectura y stack]]
+- [x] Elegir stack → [[Arquitectura y stack]] (Expo + Supabase + Vercel)
 - [ ] Modelo de datos / base de datos
-- [ ] Wireframes y mockups de pantallas (Figma)
-- [ ] Diseño de la API / backend
+- [ ] Wireframes y mockups de pantallas (Figma) + guía de estilo
+- [ ] Diseño del backend en Supabase (tablas, Row Level Security, Edge Functions)
+- [ ] Configurar GitHub Actions, ESLint y Prettier en SBIT_BIRM
 
 ## Fase 3 — Desarrollo (sprints)
 - [ ] Sprint 1: autenticación + navegación base
@@ -28,4 +29,5 @@ Volver a [[Inicio]] · Tareas en [[Tablero de tareas]]
 ## Fase 4 — Pruebas y entrega
 - [ ] Pruebas funcionales y de usuario
 - [ ] Corrección de errores
-- [ ] Documentación final y presentación
+- [ ] Panel de administración y página web publicados en Vercel
+- [ ] Documentación final, vídeo demo y presentación
