@@ -7,7 +7,7 @@ Volver a [[Inicio]] · Ver [[Plan de trabajo]]
 | Pieza | Herramienta | Alojamiento |
 |---|---|---|
 | App móvil (Android + iOS) | React Native + Expo (TypeScript) | En el móvil (Expo Go / APK) |
-| Backend, base de datos y login | Supabase (PostgreSQL + Auth + Storage) — ⚠️ **pendiente de confirmar si podemos usarlo** | Nube de Supabase (plan gratuito) |
+| Backend, base de datos y login | Supabase (PostgreSQL + Auth + Storage) — ✅ confirmado y conectado (esquema y RLS en `supabase/migrations/`) | Nube de Supabase (plan gratuito) |
 | Lógica de servidor (emails, informes, tareas programadas) | Supabase Edge Functions | Nube de Supabase |
 | Panel web de administración + página de presentación | Next.js | Vercel (plan gratuito) |
 | Código, revisiones y comprobaciones automáticas | GitHub + GitHub Actions | GitHub |
