@@ -4,6 +4,7 @@
 
 ## Navegación
 - 🗺️ [[Esquema del proyecto]]
+- 🖥️ [[Reparto por PCs]]
 - 📋 [[Plan de trabajo]]
 - ✅ [[Tablero de tareas]]
 - 📑 [[Requisitos funcionales]]
