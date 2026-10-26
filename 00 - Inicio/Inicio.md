@@ -1,6 +1,6 @@
-# 🏠 Proyecto SBIT — TEAM BIRM
+# 🏠 Kampus — TEAM BIRM
 
-> App móvil que replica y mejora las funciones del SBIT del Departamento de Educación.
+> **Kampus**: app móvil que replica y mejora las funciones del SBIT del Departamento de Educación.
 
 ## Navegación
 - 📋 [[Plan de trabajo]]

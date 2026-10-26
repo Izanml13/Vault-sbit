@@ -1,4 +1,4 @@
-# 📋 Plan de trabajo
+# 📋 Plan de trabajo — Kampus
 
 Volver a [[Inicio]] · Tareas en [[Tablero de tareas]]
 

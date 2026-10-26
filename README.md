@@ -1,6 +1,6 @@
-# Vault SBIT — TEAM BIRM
+# Vault Kampus — TEAM BIRM
 
-Vault de Obsidian compartido para documentar el proyecto **SBIT**: app móvil con todas las funciones del sistema (referencia: SBIT del Departamento de Educación).
+Vault de Obsidian compartido para documentar **Kampus**, nuestra app móvil con todas las funciones del sistema (referencia: SBIT del Departamento de Educación).
 
 **Equipo BIRM:** Boubacar · Izan · Richard · Marco
 
