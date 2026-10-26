@@ -4,12 +4,47 @@ Volver a [[Inicio]] · Ver [[Esquema del proyecto]] · [[Arquitectura y stack]]
 
 ## Equipos y herramientas de IA
 
-| PC | Agente de IA | Área | Carga aprox. | Persona |
-|---|---|---|---|---|
-| **PC 1** (nosotros) | **Claude Code + Codex** | Arquitectura, núcleo, backend completo, integración y revisión | **~50 %** | |
-| **PC 2** | OpenCode | Pantallas de la app (`src/app/`) | ~17 % | |
-| **PC 3** | OpenCode | Componentes, tema, accesibilidad y datos de prueba | ~17 % | |
-| **PC 4** | OpenCode | Diseño en Figma, panel web y tests E2E | ~16 % | |
+| PC                  | Agente de IA            | Área                                                           | Carga aprox. | Persona |
+| ------------------- | ----------------------- | -------------------------------------------------------------- | ------------ | ------- |
+| **PC 1** (nosotros) | **Claude Code + Codex** | Arquitectura, núcleo, backend completo, integración y revisión |              | Izan    |
+| **PC 2**            | OpenCode                | Pantallas de la app (`src/app/`)                               |              |         |
+| **PC 3**            | OpenCode                | Componentes, tema, accesibilidad y datos de prueba             |              |         |
+| **PC 4**            | OpenCode                | Diseño en Figma, panel web y tests E2E                         |              |         |
+
+## Qué hace cada PC (para explicarlo al equipo)
+
+### 🧠 PC 1 — Líder técnico · Izan · Claude Code + Codex
+**Rol:** el arquitecto y el "cerebro" del proyecto. Decide cómo encaja todo y se asegura de que funcione junto.
+- **Define los contratos:** qué datos existen (alumno, dossier, registro diario…) y qué operaciones hay (registrar horas, validar un día…). Los demás construyen sobre eso.
+- **Monta el backend:** Supabase, tablas, permisos por rol (qué ve un alumno, un profe o un admin) y la conexión con la app.
+- **Integra y revisa:** toda PR pasa por PC 1 antes de entrar en `main`. Vigila que nadie rompa la arquitectura.
+- **Coordina:** reparte tareas, mantiene el vault y el tablero al día.
+- **Entrega:** "la app funciona con datos reales y de forma segura".
+
+### 📱 PC 2 — Pantallas de la app · OpenCode
+**Rol:** lo que el usuario ve y toca. Convierte los diseños en pantallas reales.
+- Login, navegación por rol (pestañas distintas para alumno, profe y admin).
+- Pantallas del MVP: panel "Hoy", registro diario, calendario, tareas, dossier y vista del profe.
+- Conecta cada pantalla con los casos de uso que prepara PC 1 (no habla con la base de datos directamente).
+- **Entrega:** "cada función del MVP tiene su pantalla y se puede usar de principio a fin".
+
+### 🧩 PC 3 — Piezas visuales y datos de prueba · OpenCode
+**Rol:** la caja de herramientas visual. Fabrica las piezas que PC 2 usa para montar pantallas.
+- Componentes del sistema de diseño monocromo: botones, inputs, tarjetas, chips de estado, celdas de calendario.
+- Tema (colores, Inter, claro/oscuro) y accesibilidad (contraste, tamaño de texto, lector de pantalla).
+- Datos de prueba realistas para que la app se pueda usar y enseñar sin depender de Supabase.
+- **Entrega:** "todas las pantallas se ven iguales, cuidadas y accesibles".
+
+### 🎨 PC 4 — Diseño, web y calidad · OpenCode
+**Rol:** el que dibuja antes y comprueba después.
+- **Antes de programar:** mockups en Figma de cada pantalla con el sistema de diseño.
+- **Panel web** de administración (Next.js + Vercel) para gestionar usuarios, centros y periodos.
+- **Calidad:** tests E2E que prueban la app como un usuario real y revisión de experiencia de uso.
+- **Final:** página de presentación, vídeo y demo.
+- **Entrega:** "se ve bien antes de construirse y funciona bien después".
+
+### Cómo trabajan juntos
+`PC 4 diseña` → `PC 1 define datos y operaciones` → `PC 3 prepara piezas y datos de prueba` + `PC 2 monta la pantalla` → `PC 4 prueba` → `PC 1 revisa e integra`
 
 **Por qué así:** PC 1 se queda con todo lo que define el contrato y lo que es difícil de deshacer: dominio, puertos, base de datos, seguridad y la integración. Los PCs 2-4 trabajan sobre contratos ya cerrados, con tareas acotadas que OpenCode resuelve bien.
 
