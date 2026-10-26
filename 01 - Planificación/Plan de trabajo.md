@@ -18,7 +18,8 @@ Volver a [[Inicio]] · Tareas en [[Tablero de tareas]]
 - [ ] Confirmar si podemos usar Supabase (si no, elegir otro backend y crear su adaptador)
 - [x] Arquitectura hexagonal en el código
 - [ ] Modelo de datos / base de datos
-- [ ] Wireframes y mockups de pantallas (Figma) + guía de estilo
+- [x] Paleta y sistema de diseño → [[Sistema de diseño]]
+- [ ] Wireframes y mockups de pantallas (Figma)
 - [ ] Diseño del backend en Supabase (tablas, Row Level Security, Edge Functions)
 - [x] Configurar GitHub Actions, ESLint y Prettier en SBIT_BIRM
 

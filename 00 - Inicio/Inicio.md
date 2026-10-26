@@ -9,6 +9,7 @@
 - ✅ [[Tablero de tareas]]
 - 📑 [[Requisitos funcionales]]
 - 🎨 [[Arquitectura y stack]]
+- 🖌️ [[Sistema de diseño]]
 - 🧪 [[Guía de desarrollo]]
 - 🗓️ Reuniones → carpeta `05 - Reuniones`
 - 👥 [[Equipo y roles]]
