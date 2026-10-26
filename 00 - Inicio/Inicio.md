@@ -3,6 +3,7 @@
 > **Kampus**: app móvil que replica y mejora las funciones del SBIT del Departamento de Educación.
 
 ## Navegación
+- 🗺️ [[Esquema del proyecto]]
 - 📋 [[Plan de trabajo]]
 - ✅ [[Tablero de tareas]]
 - 📑 [[Requisitos funcionales]]
