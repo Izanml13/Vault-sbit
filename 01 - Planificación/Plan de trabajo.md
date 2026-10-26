@@ -15,6 +15,8 @@ Volver a [[Inicio]] · Tareas en [[Tablero de tareas]]
 
 ## Fase 2 — Diseño
 - [x] Elegir stack → [[Arquitectura y stack]] (Expo + Supabase + Vercel)
+- [ ] Confirmar si podemos usar Supabase (si no, elegir otro backend y crear su adaptador)
+- [x] Arquitectura hexagonal en el código
 - [ ] Modelo de datos / base de datos
 - [ ] Wireframes y mockups de pantallas (Figma) + guía de estilo
 - [ ] Diseño del backend en Supabase (tablas, Row Level Security, Edge Functions)
