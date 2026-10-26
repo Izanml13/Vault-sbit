@@ -20,7 +20,7 @@ Volver a [[Inicio]] · Tareas en [[Tablero de tareas]]
 - [ ] Modelo de datos / base de datos
 - [ ] Wireframes y mockups de pantallas (Figma) + guía de estilo
 - [ ] Diseño del backend en Supabase (tablas, Row Level Security, Edge Functions)
-- [ ] Configurar GitHub Actions, ESLint y Prettier en SBIT_BIRM
+- [x] Configurar GitHub Actions, ESLint y Prettier en SBIT_BIRM
 
 ## Fase 3 — Desarrollo (sprints)
 - [ ] Sprint 1: autenticación + navegación base
