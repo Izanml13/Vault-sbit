@@ -14,10 +14,10 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| Aplicar en Supabase la migración de roles y valoraciones | — | ⛔ Bloqueado | Falló al ejecutarla; falta el mensaje de error |
+| Aplicar en Supabase la migración de roles y valoraciones | — | ✅ Hecho | Con `npm run db:subir`; la web ya funciona en Supabase con los 3 roles |
 | Nombre del alumno y del tutor en el dossier | `feature/pc1-dossier-nombres` | ✅ Hecho | `alumnoNombre`, `tutorNombre`, `tutorEmpresaNombre` en `Dossier` |
 | Tests unitarios con Jest (registro, valoraciones, fechas) | `feature/pc1-tests` | ✅ Hecho | 35 tests; `npm test` en el CI |
-| Modelo ER: centros, empresas, convenios y alumnos por centro | `feature/pc1-centros-empresas` | ✅ Hecho | Migración `20261027000000`; el profe solo ve su centro. Falta aplicarla en Supabase (después de la de roles) |
+| Modelo ER: centros, empresas, convenios y alumnos por centro | `feature/pc1-centros-empresas` | ✅ Hecho | Migración `20261027000000`; el profe solo ve su centro. Aplicada en Supabase |
 | Núcleo de tareas y calendario (dominio, puerto, casos de uso, adaptadores) | `feature/pc1-tareas` | ⏳ Pendiente | Tablas ya creadas en Supabase |
 | Revisar y fusionar las PR de PC 2, 3 y 4 | — | 🔄 Continuo | |
 
