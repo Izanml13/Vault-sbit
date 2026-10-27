@@ -20,6 +20,7 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 | Modelo ER: centros, empresas, convenios y alumnos por centro | `feature/pc1-centros-empresas` | ✅ Hecho | Migración `20261027000000`; el profe solo ve su centro. Aplicada en Supabase |
 | Migraciones con la CLI: CI desde cero, despliegue automático y backup | `feature/pc1-migraciones-ci` | ✅ Hecho | Al fusionar una migración en `main` se aplica sola en Supabase. Normas en `AGENTS.md` |
 | Cinco roles del ER: generalitat, instituto, profe, empresa y alumno | `feature/pc1-cinco-roles` | ✅ Hecho | Migración `20261027010000` (desplegada sola). Sustituye la PR 2. Faltan pantallas de instituto (asignar alumnos) y generalitat |
+| Pantalla del instituto: asignar alumnos a profes, cuentas nuevas y convenios | `feature/pc1-pantalla-instituto` | ✅ Hecho | Pestaña Centro. Pendiente: vista de la generalitat (elegir centro) e incidencias |
 | Núcleo de tareas y calendario (dominio, puerto, casos de uso, adaptadores) | `feature/pc1-tareas` | ⏳ Pendiente | Tablas ya creadas en Supabase |
 | Revisar y fusionar las PR de PC 2, 3 y 4 | — | 🔄 Continuo | |
 
