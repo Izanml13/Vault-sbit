@@ -18,6 +18,7 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 | Nombre del alumno y del tutor en el dossier | `feature/pc1-dossier-nombres` | ✅ Hecho | `alumnoNombre`, `tutorNombre`, `tutorEmpresaNombre` en `Dossier` |
 | Tests unitarios con Jest (registro, valoraciones, fechas) | `feature/pc1-tests` | ✅ Hecho | 35 tests; `npm test` en el CI |
 | Modelo ER: centros, empresas, convenios y alumnos por centro | `feature/pc1-centros-empresas` | ✅ Hecho | Migración `20261027000000`; el profe solo ve su centro. Aplicada en Supabase |
+| Migraciones con la CLI: CI desde cero, despliegue automático y backup | `feature/pc1-migraciones-ci` | ✅ Hecho | Al fusionar una migración en `main` se aplica sola en Supabase. Normas en `AGENTS.md` |
 | Núcleo de tareas y calendario (dominio, puerto, casos de uso, adaptadores) | `feature/pc1-tareas` | ⏳ Pendiente | Tablas ya creadas en Supabase |
 | Revisar y fusionar las PR de PC 2, 3 y 4 | — | 🔄 Continuo | |
 
