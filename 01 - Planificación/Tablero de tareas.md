@@ -25,14 +25,22 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 | Revisar y fusionar las PR de PC 2, 3 y 4 | — | 🔄 Continuo | |
 
 ### 📱 PC 2 · Pantallas · OpenCode
-Solo `src/app/`, `src/ui/hooks/` y `src/ui/vistas/`.
+Solo `src/app/`, `src/ui/hooks/`, `src/ui/vistas/` y `src/ui/utils/`.
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| Calendario mensual del alumno con el estado de cada día | `feature/pc2-calendario` | ⏳ Pendiente | Usa `listarRegistros`; tocar un día abre el registro de ese día |
-| Pulir el registro diario en móvil (teclado, scroll, botones) | `feature/pc2-registro-movil` | ⏳ Pendiente | Probar en Expo Go |
-| Estados vacíos y de carga en los tres paneles | `feature/pc2-estados` | ⏳ Pendiente | |
-| Nombre del alumno en las tarjetas de empresa y profe | `feature/pc2-nombres` | ⏳ Pendiente | Ya se puede: `dossier.alumnoNombre` |
+| Calendario mensual del alumno con el estado de cada día | `feature/pc2-calendario` | ✅ Hecho | PR #3. Tocar un día abre su registro |
+| Pulir el registro diario en móvil (teclado, scroll, botones) | `feature/pc2-registro-movil` | ✅ Hecho | PR #4. Falta probarlo en Expo Go en un móvil real |
+| Estados vacíos y de carga en los tres paneles | `feature/pc2-estados` | ✅ Hecho | PR #5 |
+| Nombre del alumno en las tarjetas de empresa y profe | `feature/pc2-nombres` | ✅ Hecho | PR #6 |
+| Pantallas de tareas y fechas del calendario | `feature/pc2-tareas-calendario` | 👀 En revisión | PR #8. **Fusionar antes `feature/pc1-tareas-calendario`** (va encima) |
+| Vista de la Generalitat: elegir instituto y gestionarlo | `feature/pc2-tareas-calendario` | 👀 En revisión | PR #8. Botón "Gestionar institutos" en Seguimiento |
+
+**Pendiente para otros PCs (salió en la PR #8):**
+- **PC 1:** `listarCentros()` en `GestionCentroPort`. Ahora la Generalitat solo ve los institutos que ya tienen algún dossier.
+- **PC 3:** mostrar la pestaña *Centro* también a la Generalitat en `app-tabs` (ahora entra con un botón).
+- **PC 1:** selector de fecha (dependencia nueva). Ahora las fechas se escriben a mano (`AAAA-MM-DD`).
+- **PC 3 (opcional):** `Pantalla` con `keyboardShouldPersistTaps="handled"` y `keyboardDismissMode="on-drag"` (PR #4).
 
 ### 🧩 PC 3 · Componentes, tema y datos de prueba · OpenCode
 Solo `src/ui/components/`, `src/ui/theme/` y `src/infrastructure/memory/`.
@@ -50,7 +58,7 @@ Solo diseño, `e2e/` y el panel web.
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
 | Mockups en Figma de las pantallas actuales y del calendario | — | ⏳ Pendiente | Tema monocromo, Inter y el logo del archivo "Kampus · Logo" |
-| Tests E2E con Playwright de la web: login y registrar un día | `feature/pc4-e2e` | ⏳ Pendiente | Contra `npx expo start --web`, backend memoria |
+| Tests E2E con Playwright de la web: login y registrar un día | `feature/pc4-e2e` | ✅ Hecho | Contra `npx expo start --web`, backend memoria |
 | Revisión de experiencia de uso con los tres roles | — | ⏳ Pendiente | Apuntar las propuestas como tareas en este tablero |
 
 ## Hecho
