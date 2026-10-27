@@ -15,7 +15,7 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
 | Aplicar en Supabase la migración de roles y valoraciones | — | ⛔ Bloqueado | Falló al ejecutarla; falta el mensaje de error |
-| Nombre del alumno y del tutor en el dossier | `feature/pc1-dossier-nombres` | ⏳ Pendiente | Lo necesita PC 2 para las tarjetas de empresa y profe |
+| Nombre del alumno y del tutor en el dossier | `feature/pc1-dossier-nombres` | ✅ Hecho | `alumnoNombre`, `tutorNombre`, `tutorEmpresaNombre` en `Dossier` |
 | Tests unitarios con Jest (registro, valoraciones, fechas) | `feature/pc1-tests` | ⏳ Pendiente | Y añadirlos al CI |
 | Núcleo de tareas y calendario (dominio, puerto, casos de uso, adaptadores) | `feature/pc1-tareas` | ⏳ Pendiente | Tablas ya creadas en Supabase |
 | Revisar y fusionar las PR de PC 2, 3 y 4 | — | 🔄 Continuo | |
@@ -28,7 +28,7 @@ Solo `src/app/`, `src/ui/hooks/` y `src/ui/vistas/`.
 | Calendario mensual del alumno con el estado de cada día | `feature/pc2-calendario` | ⏳ Pendiente | Usa `listarRegistros`; tocar un día abre el registro de ese día |
 | Pulir el registro diario en móvil (teclado, scroll, botones) | `feature/pc2-registro-movil` | ⏳ Pendiente | Probar en Expo Go |
 | Estados vacíos y de carga en los tres paneles | `feature/pc2-estados` | ⏳ Pendiente | |
-| Nombre del alumno en las tarjetas de empresa y profe | `feature/pc2-nombres` | ⏳ Pendiente | Cuando PC 1 acabe `dossier-nombres` |
+| Nombre del alumno en las tarjetas de empresa y profe | `feature/pc2-nombres` | ⏳ Pendiente | Ya se puede: `dossier.alumnoNombre` |
 
 ### 🧩 PC 3 · Componentes, tema y datos de prueba · OpenCode
 Solo `src/ui/components/`, `src/ui/theme/` y `src/infrastructure/memory/`.
