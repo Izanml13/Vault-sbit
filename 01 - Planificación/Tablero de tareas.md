@@ -1,14 +1,65 @@
 # ✅ Tablero de tareas
 
-| Tarea | Responsable | Estado | Fecha límite | Notas |
-|---|---|---|---|---|
-| Montar vault Obsidian | Izan | ✅ Hecho | 2026-10-26 | |
-| Analizar SBIT Educación | Equipo | ✅ Hecho | 2026-10-26 | [[Análisis SBIT]] |
-| Requisitos funcionales | PC 1 | 🔄 En curso | | Primera versión con 16 RF |
-| Elegir stack | Equipo | ✅ Hecho | 2026-10-26 | Expo + Supabase + Vercel |
-| Wireframes | | ⏳ Pendiente | | |
-| Esqueleto de la app (Expo + arquitectura hexagonal) | Izan | ✅ Hecho | 2026-10-26 | Subido a SBIT_BIRM |
-| Añadir CI (GitHub Actions) a SBIT_BIRM | Izan | ✅ Hecho | 2026-10-26 | Primera ejecución en verde |
-| Confirmar si podemos usar Supabase | | ⛔ Bloqueado | | Pendiente de respuesta; mientras, backend en memoria |
+Volver a [[Inicio]] · Ver [[Reparto por PCs]]
+
+## Sprint 2 · MVP usable (desde 2026-10-27)
+
+**Objetivo:** el alumno apunta sus días, la empresa valora el mes y el profe pone la valoración final, con datos reales en Supabase, en web y en móvil.
+
+**Punto de partida (ya en `main`):** login, pestañas por rol, panel del alumno, registro diario, valoración mensual (empresa), seguimiento y valoración final (profe), componentes base y adaptadores Supabase y memoria. Para probar: `npx expo start --web` y las cuentas de prueba del login.
+
+**Cómo trabajar:** `git pull` en `main` → rama `feature/pcN-...` → `npm run lint`, `npm run typecheck` y `npm run format:check` → PR. PC 1 revisa y fusiona.
+
+### 🧠 PC 1 · Izan · Claude Code + Codex
+
+| Tarea | Rama | Estado | Notas |
+|---|---|---|---|
+| Aplicar en Supabase la migración de roles y valoraciones | — | ⛔ Bloqueado | Falló al ejecutarla; falta el mensaje de error |
+| Nombre del alumno y del tutor en el dossier | `feature/pc1-dossier-nombres` | ⏳ Pendiente | Lo necesita PC 2 para las tarjetas de empresa y profe |
+| Tests unitarios con Jest (registro, valoraciones, fechas) | `feature/pc1-tests` | ⏳ Pendiente | Y añadirlos al CI |
+| Núcleo de tareas y calendario (dominio, puerto, casos de uso, adaptadores) | `feature/pc1-tareas` | ⏳ Pendiente | Tablas ya creadas en Supabase |
+| Revisar y fusionar las PR de PC 2, 3 y 4 | — | 🔄 Continuo | |
+
+### 📱 PC 2 · Pantallas · OpenCode
+Solo `src/app/`, `src/ui/hooks/` y `src/ui/vistas/`.
+
+| Tarea | Rama | Estado | Notas |
+|---|---|---|---|
+| Calendario mensual del alumno con el estado de cada día | `feature/pc2-calendario` | ⏳ Pendiente | Usa `listarRegistros`; tocar un día abre el registro de ese día |
+| Pulir el registro diario en móvil (teclado, scroll, botones) | `feature/pc2-registro-movil` | ⏳ Pendiente | Probar en Expo Go |
+| Estados vacíos y de carga en los tres paneles | `feature/pc2-estados` | ⏳ Pendiente | |
+| Nombre del alumno en las tarjetas de empresa y profe | `feature/pc2-nombres` | ⏳ Pendiente | Cuando PC 1 acabe `dossier-nombres` |
+
+### 🧩 PC 3 · Componentes, tema y datos de prueba · OpenCode
+Solo `src/ui/components/`, `src/ui/theme/` y `src/infrastructure/memory/`.
+
+| Tarea | Rama | Estado | Notas |
+|---|---|---|---|
+| Cambiar el logo animado de Expo por la K de Kampus | `feature/pc3-logo-animado` | ⏳ Pendiente | `animated-icon.tsx` y `.web.tsx`; logo en `assets/brand/` |
+| Datos de prueba realistas en memoria (2-3 alumnos, días de septiembre y octubre) | `feature/pc3-datos-demo` | ⏳ Pendiente | Mismos IDs que `supabase/seed.sql` donde se pueda |
+| Componente `CeldaCalendario` (día, estado, horas) | `feature/pc3-celda-calendario` | ⏳ Pendiente | Lo usará PC 2 en el calendario |
+| Repaso de accesibilidad de los componentes base | `feature/pc3-accesibilidad` | ⏳ Pendiente | Contraste, 44 px mínimo, etiquetas para lector de pantalla |
+
+### 🎨 PC 4 · Diseño, web y QA · OpenCode
+Solo diseño, `e2e/` y el panel web.
+
+| Tarea | Rama | Estado | Notas |
+|---|---|---|---|
+| Mockups en Figma de las pantallas actuales y del calendario | — | ⏳ Pendiente | Tema monocromo, Inter y el logo del archivo "Kampus · Logo" |
+| Tests E2E con Playwright de la web: login y registrar un día | `feature/pc4-e2e` | ⏳ Pendiente | Contra `npx expo start --web`, backend memoria |
+| Revisión de experiencia de uso con los tres roles | — | ⏳ Pendiente | Apuntar las propuestas como tareas en este tablero |
+
+## Hecho
+
+| Tarea | Responsable | Fecha |
+|---|---|---|
+| Vault, análisis del SBIT, requisitos y stack | Equipo | 2026-10-26 |
+| Esqueleto, arquitectura hexagonal y CI | Izan | 2026-10-26 |
+| Supabase: esquema, permisos por rol y datos demo | Izan | 2026-10-26 |
+| Dossier y registro diario (núcleo y adaptadores) | Izan | 2026-10-26 |
+| Roles alumno, empresa y profe y valoraciones | Bouba | 2026-10-26 |
+| Docker de la versión web | Izan | 2026-10-26 |
+| Logo, icono, favicon y splash | Izan | 2026-10-26 |
+| Login, pestañas por rol y pantallas de los tres roles | Izan | 2026-10-27 |
 
 Estados: ⏳ Pendiente · 🔄 En curso · 👀 En revisión · ✅ Hecho · ⛔ Bloqueado
