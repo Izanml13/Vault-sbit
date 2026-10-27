@@ -16,7 +16,7 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 |---|---|---|---|
 | Aplicar en Supabase la migración de roles y valoraciones | — | ⛔ Bloqueado | Falló al ejecutarla; falta el mensaje de error |
 | Nombre del alumno y del tutor en el dossier | `feature/pc1-dossier-nombres` | ✅ Hecho | `alumnoNombre`, `tutorNombre`, `tutorEmpresaNombre` en `Dossier` |
-| Tests unitarios con Jest (registro, valoraciones, fechas) | `feature/pc1-tests` | ⏳ Pendiente | Y añadirlos al CI |
+| Tests unitarios con Jest (registro, valoraciones, fechas) | `feature/pc1-tests` | ✅ Hecho | 35 tests; `npm test` en el CI |
 | Núcleo de tareas y calendario (dominio, puerto, casos de uso, adaptadores) | `feature/pc1-tareas` | ⏳ Pendiente | Tablas ya creadas en Supabase |
 | Revisar y fusionar las PR de PC 2, 3 y 4 | — | 🔄 Continuo | |
 
