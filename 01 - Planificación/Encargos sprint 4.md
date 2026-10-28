@@ -1,8 +1,8 @@
-# 📋 Encargos sprint 4 · Front y comunicación (para pegar en OpenCode y Codex)
+# 📋 Encargos sprint 4 · Front y comunicación
 
 Volver a [[Tablero de tareas]] · Ver [[Flujo de ramas]] · [[Reparto por PCs]]
 
-Cada PC copia **su** bloque entero y lo pega en su agente. Todos leen `AGENTS.md` del repo (arquitectura, carpetas permitidas y normas de ramas).
+Cada PC copia **su** bloque entero y lo pega en su agente. Todos leen `AGENTS.md` del repo. **En este sprint el reparto de carpetas cambia** (ver tabla); si choca con `AGENTS.md`, manda este documento hasta que PC 1 lo actualice.
 
 Antes de empezar, una sola vez y línea a línea (en PowerShell, sin `&&`):
 
@@ -14,6 +14,20 @@ git pull
 
 ---
 
+## 👥 Reparto del sprint 4
+
+| PC | Papel | Puede modificar |
+|---|---|---|
+| **PC 1** · Claude Code (Izan) | **Todo el front** e integración final | `src/app/`, `src/ui/`, `src/config/container.ts`, `package.json`; revisa y fusiona |
+| **PC 2** · OpenCode | **Base de datos** | `supabase/migrations/` (solo migraciones nuevas), `supabase/seed.sql` |
+| **PC 3** · OpenCode | **Backend** | `src/core/` (domain, ports, application y tests), `src/infrastructure/` (memory y supabase) |
+| **PC 4** · OpenCode | **Ayudante general** | Tests, `e2e/`, documentación del vault, revisión de PR, estudio del SBIT |
+| **Codex** (en PC 1) | Refuerzo de PC 1 | Revisa las PR de PC 2 y PC 3 antes de fusionar; arreglos pequeños que pida PC 1 |
+
+**Cadena de trabajo:** PC 2 hace la migración → PC 3 monta encima dominio, puerto, casos de uso y adaptadores → PC 1 hace la pantalla. Cada uno avisa al siguiente cuando su PR está en `develop`.
+
+---
+
 ## ✅ Decisiones tomadas (2026-10-28)
 
 | Tema | Decisión |
@@ -22,104 +36,94 @@ git pull
 | Validar horas | **Doble validación**: el tutor de empresa valida las horas que registra el alumno; después el profe valida las que ya validó la empresa. Botón sencillo en los dos casos. |
 | Clases | **Ciclo + curso + grupo** (ej. DAM 2º A). Las crea el instituto y les asigna alumnos. El profe navega Clases → Alumnos → Ficha. |
 | Instituto | Gestiona **profesores** y qué alumnos tiene cada uno, no a los alumnos sueltos. |
-| Footer | **Inicio · Calendario · Chat · Perfil** para todos los roles. Fuera el botón de registrar del footer; se queda el de Inicio. |
+| Footer | **Inicio · Calendario · Chat · Perfil** para todos los roles. Fuera Registrar del footer; se queda el botón de Inicio. |
 | Informes | Gráficos adaptados a cada rol (alumno: horas totales y por mes; profe: progreso de su clase; instituto: por profe y empresa; Generalitat: por centro). |
-| SBIT | Solo estudiar **funciones y flujos** a partir de capturas y uso propio. **Sin datos personales.** |
+| SBIT | Solo **funciones y flujos**, a partir de capturas y uso propio. **Sin datos personales.** |
 | Diseño | UI UX Pro Max + Liquid Glass de Apple (cristal nativo en iOS, alternativa opaca en Android y web) + animaciones limpias. |
 
-## 🗺️ Orden
+---
 
-1. **Fase 0 · Diseño** (PC 3 y PC 4, ya): sistema de diseño, cristal, animaciones, leyenda, estudio del SBIT.
-2. **Fase 1 · Navegación** (PC 2, ya): footer nuevo.
-3. **Fase 2 · Núcleo y migraciones** (PC 1: Claude + Codex): chat, clases, validación, profes del instituto, estadísticas.
-4. **Fase 3 · Pantallas** (PC 2, según PC 1 avise): todo lo que usa la fase 2.
-5. **Fase 4 · Calidad** (PC 4): e2e de lo nuevo.
+## 🧠 PC 1 · Claude Code · Todo el front
+
+Lo hace Claude, en este orden:
+
+1. Sistema de diseño con UI UX Pro Max (tokens claro y oscuro).
+2. Footer nuevo: Inicio · Calendario · Chat · Perfil.
+3. Componentes: Cristal (Liquid Glass), animaciones, Leyenda y gráficos.
+4. Calendario rediseñado y selector de días desplegable de la Generalitat (`ops/pc1-selector-fecha`).
+5. Formulario de dossier y pantalla de incidencias (el backend ya está en `develop`).
+6. Según vayan llegando PC 2 y PC 3: chat, clases del profe con Validar horas, validar de la empresa, profesores del instituto e informes por rol.
 
 ---
 
-## 🧠 PC 1 · Claude Code (Izan)
-
-Lo hace Claude en esta sesión, en este orden:
-
-1. `ops/pc1-selector-fecha`: cerrar la dependencia del selector de fecha (lo necesita el calendario desplegable de la Generalitat).
-2. `feature/pc1-chat-dossier`: migración `chats` (un hilo por dossier, mensajes, RLS por participante del dossier), dominio, puerto, casos de uso, adaptadores memoria y Supabase.
-3. `feature/pc1-informes`: casos de uso de estadísticas por rol (solo lectura, sin migración si es posible).
-
----
-
-## 🤖 PC 1 · Codex
+## 🗄️ PC 2 · Base de datos
 
 ```
-Eres Codex trabajando como PC 1 del proyecto Kampus. Lee AGENTS.md y respétalo (arquitectura hexagonal, ESLint de fronteras, migraciones nuevas nunca editando las de main). Trabaja desde develop actualizado. Una rama y una PR contra develop por tarea, en este orden. Claude está haciendo a la vez el chat y los informes: NO toques archivos de chat ni de informes.
+Eres PC 2 del proyecto Kampus y en este sprint te encargas de la BASE DE DATOS. Lee AGENTS.md (arquitectura y normas de ramas); este encargo sustituye su tabla de carpetas. Solo puedes tocar supabase/migrations/ (SOLO migraciones nuevas, con npm run db:nueva nombre_corto; NUNCA edites una que ya esté en main) y supabase/seed.sql. No toques src/.
 
-1. feature/pc1-clases — Entidad Grupo (ciclo, curso, letra, centro_id) y alumnos asignados a un grupo. Migración nueva con RLS (instituto de su centro y Generalitat gestionan; profe y alumno leen los suyos). Dominio, puerto, casos de uso (crear, listar por centro, asignar alumno, listar alumnos de un grupo), adaptador memoria con datos demo (usa IDS_DEMO) y adaptador Supabase. Registrar en container.ts. Tests.
+Prueba cada migración en local con npm run db:reset y comprueba la RLS entrando como cada rol (set role authenticated + set_config de request.jwt.claims y request.jwt.claim.sub). Reutiliza las funciones que ya existen: administra_centro, gestiona_dossier, puede_ver_dossier, es_generalitat, centro_actual.
 
-2. feature/pc1-validar-horas — Doble validación del registro de horas: primero el tutor de empresa del dossier valida el registro del alumno; después el profe tutor valida lo que ya validó la empresa. Migración nueva: columnas de validación (quién y cuándo, para empresa y para profe) y trigger que impida que el profe valide algo no validado por la empresa y que nadie edite un registro ya validado. Casos de uso validarComoEmpresa, validarComoProfe y pendientesDeValidar. Adaptadores y tests.
+Una rama y una PR contra develop por tarea, en este orden. Cuando se fusione cada una, avisa a PC 3:
 
-3. feature/pc1-profes-instituto — Casos de uso para el instituto: listar profesores del centro con sus alumnos asignados y reasignar alumnos de un profe a otro (en bloque). Reutiliza asignarProfe del puerto de gestión del centro. Tests.
+1. feature/pc2-db-chat — Mensajes de chat por dossier (dossier_id, autor_id, texto de 1 a 2000 caracteres, creado_en). Trigger que pone el autor. RLS: leen y escriben solo los participantes del dossier (alumno, profe tutor, tutor de empresa, instituto del centro); la Generalitat solo lee. Datos de ejemplo en seed.sql.
 
-Prueba cada migración en local (npm run db:reset). Antes de abrir cada PR: npm run lint, npm run typecheck, npm test y npm run format:check en verde. Commits tipo(área): qué hace, en español, a nombre de Izan.
+2. feature/pc2-db-clases — Tabla grupos (centro_id, ciclo, curso, letra; única por centro) y columna grupo_id en perfiles para los alumnos. RLS: el instituto de su centro y la Generalitat gestionan; profe y alumno leen los de su centro. Datos de ejemplo en seed.sql.
+
+3. feature/pc2-db-validar-horas — Doble validación del registro de horas: columnas validado_empresa_por, validado_empresa_en, validado_profe_por y validado_profe_en. Trigger: solo el tutor de empresa del dossier valida como empresa; solo el profe tutor valida como profe, y solo si ya validó la empresa; un registro validado no se edita ni se borra.
+
+En la descripción de cada PR explica tablas, columnas y políticas para que PC 3 sepa qué usar. Commits tipo(área): qué hace, en español.
 ```
 
 ---
 
-## 📱 PC 2 · Pantallas
+## ⚙️ PC 3 · Backend
 
 ```
-Eres PC 2 del proyecto Kampus. Lee AGENTS.md y respétalo: solo puedes tocar src/app/, src/ui/hooks/, src/ui/vistas/ y src/ui/utils/. Si necesitas cambiar un puerto, un caso de uso, container.ts o package.json, NO lo hagas: descríbelo en la PR.
+Eres PC 3 del proyecto Kampus y en este sprint te encargas del BACKEND. Lee AGENTS.md y respeta la arquitectura hexagonal (ESLint la comprueba); este encargo sustituye su tabla de carpetas. Solo puedes tocar src/core/ (domain, ports, application y sus tests) y src/infrastructure/ (memory y supabase). NO toques src/app/, src/ui/, container.ts ni package.json: si hay que registrar algo en container.ts, dilo en la PR y lo hace PC 1.
 
-Una rama y una PR contra develop por tarea, en este orden:
+Orden de cada módulo: entidad (domain/) → puerto (ports/) → casos de uso (application/) → adaptador memoria con datos demo (usa IDS_DEMO de datos-demo.ts) → adaptador Supabase → tests en src/core/__tests__ con los fixtures de src/core/__fixtures__/datos.ts. Toma incidencias como ejemplo (domain/incidencia.ts, application/incidencias.ts).
 
-1. feature/pc2-footer — Barra inferior igual para todos los roles: Inicio, Calendario, Chat y Perfil. Quita Registrar del footer (el registro se hace desde el botón de Inicio, que se mantiene). Chat de momento puede ser una pantalla vacía con "Próximamente". Lo que hoy cuelga de otras pestañas (Seguimiento, Centro) se abre desde Inicio.
+Cada tarea empieza cuando PC 2 avise de que su migración está en develop (la 4 y la 5 no dependen de PC 2). Una rama y una PR contra develop por tarea:
 
-2. feature/pc2-calendario — Rediseño completo del calendario (src/ui/vistas/agenda.tsx) usando los componentes nuevos de PC 3 (leyenda, chips, animaciones). Vista de mes clara, día seleccionado, lista del día debajo.
+1. feature/pc3-chat — Chat por dossier: listarMensajes, enviarMensaje y quién participa. Rechaza texto vacío o de más de 2000 caracteres.
 
-NO empieces lo siguiente hasta que PC 1 avise de que está en develop:
-3. feature/pc2-formulario-dossier e feature/pc2-incidencias (ya desbloqueadas: los casos de uso están en develop).
-4. feature/pc2-chat — pantalla de chat por alumno.
-5. feature/pc2-clases-profe — Clases → Alumnos → Ficha, con botón Validar horas.
-6. feature/pc2-validar-empresa — botón Validar horas para el tutor de empresa.
-7. feature/pc2-profes-instituto — pantalla del instituto: profesores y sus alumnos.
-8. feature/pc2-informes — gráficos por rol en Inicio.
-9. feature/pc2-generalitat-fechas — selector de días con calendario desplegable.
+2. feature/pc3-clases — Grupos: crear, listar por centro, asignar alumno, listar alumnos de un grupo y "mis clases" del profe (grupos con alumnos suyos).
+
+3. feature/pc3-validar-horas — validarComoEmpresa, validarComoProfe y pendientesDeValidar(usuario). Error claro si el profe intenta validar algo que la empresa no ha validado.
+
+4. feature/pc3-profes-instituto — Para el instituto: profesores del centro con sus alumnos, y reasignar alumnos de un profe a otro en bloque (reutiliza asignarProfe de gestion-centro-port).
+
+5. feature/pc3-informes — Estadísticas por rol, solo lectura: alumno (horas totales y por mes), profe (progreso de su clase), instituto (por profe y por empresa), Generalitat (por centro).
 
 Antes de abrir cada PR: npm run lint, npm run typecheck, npm test y npm run format:check en verde. Commits tipo(área): qué hace, en español.
 ```
 
 ---
 
-## 🧩 PC 3 · Componentes, tema y datos de prueba
+## 🛟 PC 4 · Ayudante general
 
 ```
-Eres PC 3 del proyecto Kampus. Lee AGENTS.md y respétalo: solo puedes tocar src/ui/components/, src/ui/theme/ y src/infrastructure/memory/. Si necesitas cambiar un puerto, un caso de uso, container.ts o package.json (por ejemplo instalar expo-glass-effect), NO lo hagas: pídelo en la PR para que lo haga PC 1.
+Eres PC 4 del proyecto Kampus y en este sprint eres el AYUDANTE GENERAL del equipo. Lee AGENTS.md; este encargo sustituye su tabla de carpetas. Tu zona: tests (src/**/__tests__), e2e/ y documentación del vault. No cambies código de producción: si encuentras un fallo, descríbelo en la PR del dueño (front: PC 1; base de datos: PC 2; backend: PC 3).
 
-Usa la skill UI UX Pro Max para todas las decisiones visuales. Una rama y una PR contra develop por tarea:
-
-1. feature/pc3-sistema-diseno — Revisa theme.ts con UI UX Pro Max y deja tokens claros (colores, espaciados, radios, tipografía, sombras) para claro y oscuro. Documenta en la PR las decisiones.
-
-2. feature/pc3-cristal — Componente Cristal (tarjeta/HUD estilo Liquid Glass de Apple): efecto nativo en iOS, alternativa opaca en Android y web. Si hace falta expo-glass-effect, pídelo en la PR.
-
-3. feature/pc3-animaciones — Animaciones limpias y cortas (entrada de tarjetas, pulsación de botones, cambio de pestaña) respetando "reducir movimiento" del sistema.
-
-4. feature/pc3-leyenda — Componente Leyenda reutilizable (calendario y gráficos), accesible y sin depender solo del color.
-
-5. feature/pc3-graficos — Componentes de gráfico sencillos (barra de progreso de horas, barras por mes) para los informes por rol.
-
-Antes de abrir cada PR: npm run lint, npm run typecheck, npm test y npm run format:check en verde. Commits tipo(área): qué hace, en español.
-```
-
----
-
-## 🖥️ PC 4 · Diseño, estudio y e2e
-
-```
-Eres PC 4 del proyecto Kampus. Lee AGENTS.md y respétalo: tu zona es el panel web, e2e/ y diseño.
+Una rama y una PR contra develop por tarea:
 
 1. docs/pc4-estudio-sbit — Documento en el vault (02 - Requisitos) con las funciones y flujos del SBIT por rol (alumno, profe, empresa, instituto, Generalitat), a partir de capturas y uso propio. NUNCA copies nombres, correos, DNI ni ningún dato personal; tapa o describe. Compara con Kampus: qué tenemos, qué falta, qué hacemos mejor.
 
-2. Diseño en Figma de las pantallas nuevas (footer, calendario, chat, clases del profe, informes) siguiendo el sistema de diseño de PC 3.
+2. test/pc4-pantallas — Rehacer el test de pantallas que se quitó (src/ui/__tests__), sin mocks frágiles.
 
-3. test/pc4-pantallas — Rehacer el test de pantallas que se quitó, y e2e de: footer nuevo, chat, validar horas (empresa y profe) y clases (cuando estén en develop).
+3. Revisar cada PR de PC 2 y PC 3 en cuanto se abra: que pase el CI, que respete sus carpetas y que la descripción explique lo que hace. Deja los comentarios en la PR.
 
-Antes de abrir cada PR: npm run lint, npm run typecheck, npm test y npm run format:check en verde. Commits tipo(área): qué hace, en español.
+4. test/pc4-e2e — e2e de lo nuevo cuando esté en develop: footer, chat, validar horas (empresa y profe), clases y profesores del instituto.
+
+5. Mantener al día el Tablero de tareas del vault con el estado de cada rama.
+
+Commits tipo(área): qué hace, en español.
+```
+
+---
+
+## 🤖 Codex · Refuerzo de PC 1
+
+```
+Eres Codex en PC 1 del proyecto Kampus. Lee AGENTS.md. No hagas pantallas: el front es de Claude. Tu trabajo es revisar las PR de PC 2 (migraciones) y PC 3 (backend) antes de que PC 1 las fusione: RLS probada con cada rol en local (npm run db:reset), núcleo sin imports de fuera, tests y CI en verde. Si algo falla, propón el arreglo en la PR; arréglalo tú solo si PC 1 te lo pide.
 ```

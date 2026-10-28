@@ -6,7 +6,11 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 
 **Objetivo:** front de calidad (UI UX Pro Max, Liquid Glass, animaciones) y comunicación real: chat por alumno, doble validación de horas, clases del profe y profes del instituto, informes por rol.
 
-**Encargos y decisiones:** [[Encargos sprint 4]]. Codex trabaja como PC 1 junto a Claude (clases, validar horas, profes del instituto).
+**Encargos y decisiones:** [[Encargos sprint 4]].
+
+**Reparto:** PC 1 (Claude) todo el front · PC 2 base de datos · PC 3 backend · PC 4 ayudante general (tests, e2e, revisión, docs, estudio SBIT) · Codex revisa las PR de PC 2 y PC 3.
+
+**Cadena:** PC 2 migración → PC 3 núcleo y adaptadores → PC 1 pantalla.
 
 ## Sprint 3 · Base completa (desde 2026-10-28)
 
