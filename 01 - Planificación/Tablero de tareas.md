@@ -70,7 +70,7 @@ Solo diseño, `e2e/` y el panel web.
 | Sprint 2: valoraciones, 5 roles, modelo ER (centros, empresas, convenios), pantalla Centro, migraciones con CI y despliegue | Izan · Bouba | 2026-10-27 |
 | Sprint 2: calendario, registro móvil, estados vacíos, nombres, tareas y fechas, vista Generalitat (PR #3-#8) | PC 2 | 2026-10-28 |
 | Sprint 2: logo, celda de calendario, accesibilidad y datos demo (rama `botones`) | PC 3 | 2026-10-28 |
-| Sprint 2: tests E2E de login y registro | PC 4 | 2026-10-27 |
+| Sprint 2: tests E2E de login y registro (PR #7 fusionada; adaptados a develop) | PC 4 | 2026-10-27 |
 | Flujo de ramas `main`/`develop` y limpieza de ramas | Izan | 2026-10-28 |
 
 
