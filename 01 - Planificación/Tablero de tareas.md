@@ -38,12 +38,14 @@ Solo `src/ui/components/`, `src/ui/theme/` y `src/infrastructure/memory/`.
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| **Antes de nada:** actualizarse desde `develop` (los datos demo han cambiado) | — | ⏳ Pendiente | `IDS_DEMO` en `datos-demo.ts` |
-| Iconos reales en la barra inferior (Registrar y Perfil sin icono genérico) | `feature/pc3-iconos-pestanas` | ⏳ Pendiente | |
-| Pestaña *Centro* también para la Generalitat | `feature/pc3-pestana-centro` | ⏳ Pendiente | `app-tabs.tsx` y `.web.tsx`. Pedido en la PR #8 |
-| Componentes: casilla de tarea, chip de tipo de evento, insignia "vencida" | `feature/pc3-componentes-tareas` | ⏳ Pendiente | Para que PC 2 los use en tareas y fechas |
-| `Pantalla` con teclado cómodo (`keyboardShouldPersistTaps`, `keyboardDismissMode`) | `fix/pc3-teclado` | ⏳ Pendiente | Pedido en la PR #4 |
-| Repaso de modo oscuro y contraste en todas las pantallas | `fix/pc3-modo-oscuro` | ⏳ Pendiente | |
+| **Antes de nada:** actualizarse desde `develop` (los datos demo han cambiado) | — | ✅ Hecho | Empezado desde `develop` con los datos demo nuevos |
+| Iconos reales en la barra inferior (Registrar y Perfil sin icono genérico) | `feature/pc3-iconos-pestanas` | ✅ Hecho | SF Symbols en iOS, Material en Android y SVG en la web, sin dependencias nuevas |
+| Pestaña *Centro* también para la Generalitat | `feature/pc3-pestana-centro` | ✅ Hecho | En móvil y web; `centro.tsx` y `PanelInstituto` ya la admitían |
+| Componentes: casilla de tarea, chip de tipo de evento, insignia "vencida" | `feature/pc3-componentes-tareas` | ✅ Hecho | `CasillaTarea`, `ChipTipoEvento` e `InsigniaVencida`; PC 2 puede usarlos ya en tareas y fechas |
+| `Pantalla` con teclado cómodo (`keyboardShouldPersistTaps`, `keyboardDismissMode`) | `fix/pc3-teclado` | ✅ Hecho | Aplicado en el componente `Pantalla` |
+| Repaso de modo oscuro y contraste en todas las pantallas | `fix/pc3-modo-oscuro` | ✅ Hecho | Todo el tema pasa 4,5:1. Queda el `opacity: 0.35` de los días fuera de periodo en `vistas/calendario-mes.tsx` (es de PC 2) |
+
+Las cinco tareas entraron en `develop` el 2026-10-28 **sin PR**, a petición de PC 3: PC 1 solo tiene que revisarlas.
 
 ### 🎨 PC 4 · Diseño, web y QA · OpenCode
 Solo diseño, `e2e/` y el panel web.
@@ -71,6 +73,7 @@ Solo diseño, `e2e/` y el panel web.
 | Sprint 2: calendario, registro móvil, estados vacíos, nombres, tareas y fechas, vista Generalitat (PR #3-#8) | PC 2 | 2026-10-28 |
 | Sprint 2: logo, celda de calendario, accesibilidad y datos demo (rama `botones`) | PC 3 | 2026-10-28 |
 | Sprint 2: tests E2E de login y registro | PC 4 | 2026-10-27 |
+| Sprint 3: iconos de pestañas, pestaña Centro para la Generalitat, componentes de tareas, teclado y contraste en oscuro (directo a `develop`, sin PR) | PC 3 | 2026-10-28 |
 | Flujo de ramas `main`/`develop` y limpieza de ramas | Izan | 2026-10-28 |
 
 
