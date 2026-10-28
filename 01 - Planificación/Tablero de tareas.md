@@ -2,6 +2,12 @@
 
 Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 
+## Sprint 4 · Front y comunicación (desde 2026-10-28)
+
+**Objetivo:** front de calidad (UI UX Pro Max, Liquid Glass, animaciones) y comunicación real: chat por alumno, doble validación de horas, clases del profe y profes del instituto, informes por rol.
+
+**Encargos y decisiones:** [[Encargos sprint 4]]. Codex trabaja como PC 1 junto a Claude (clases, validar horas, profes del instituto).
+
 ## Sprint 3 · Base completa (desde 2026-10-28)
 
 **Objetivo:** que la base esté entera (dossiers, tareas, incidencias, generalitat) para dedicarnos después solo a mejorar el front.
