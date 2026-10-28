@@ -64,11 +64,45 @@ Además de su parte del sprint, cada PC se encarga de **pulir las pantallas de u
 - El móvil no se cambia de orden ni de aspecto salvo que haga falta: lo horizontal es solo para la web ancha.
 - Antes de la PR: `npm run lint`, `npm run typecheck`, `npm test` y `npm run format:check` en verde, y una captura de web (1280 px) y otra de móvil en la descripción.
 
-**Encargo para pegar en el agente** (cambiad ROL, PC y archivo):
+**Encargo para pegar en el agente** (uno por PC, con el contexto de su rol):
+
+### PC 2 · Bouba · Profe
 
 ```
-Eres PCN del proyecto Kampus. Lee AGENTS.md. Tu tarea es pulir la pantalla de Inicio del rol ROL (archivo src/ui/vistas/panel-ROL.tsx) siguiendo el estilo de src/ui/vistas/panel-alumno.tsx: en la web ancha (Platform.OS === 'web' y ancho ≥ 1000) el panel va en dos columnas con <Pantalla amplia>; en el móvil se queda en una columna como ahora. Usa solo los componentes que ya existen (Tarjeta, Quesito, Leyenda, GraficoBarras...). No toques src/ui/components/, theme.ts ni pantalla.tsx: si necesitas algo de ahí, descríbelo en la PR para PC 1. Rama feature/pcN-inicio-ROL y PR contra develop con capturas de web y móvil. Commits tipo(área): qué hace, en español.
+Eres PC 2 del proyecto Kampus y te encargas de pulir el usuario PROFE (archivo principal src/ui/vistas/panel-profe.tsx (+ ficha-dossier.tsx)).
+
+CONTEXTO DEL ROL: El profe es el tutor del centro. Ve el seguimiento de SUS alumnos (cada uno con su dossier): horas hechas sobre las totales, las valoraciones mensuales que pone la empresa y él pone la valoración final (Apto / No apto + comentario). Puede crear y editar dossiers (+ Nuevo dossier, Editar dossier) y abrir la ficha de cada alumno. Hoy el Inicio es una lista de tarjetas por alumno (Seguimiento). Más adelante validará horas que ya validó la empresa y verá sus Clases (ciclo + curso + grupo), pero eso depende del backend de PC 3.
+
+IDEAS PARA EMPEZAR (no son obligatorias): en la web, lista de alumnos a la izquierda y la ficha del alumno elegido a la derecha; quesito pequeño por alumno; avisos de quién lleva días sin apuntar o tiene meses sin valorar; ordenar por quien va más retrasado.
+
+Lee AGENTS.md y fíjate en cómo está hecho el alumno, que es la referencia: src/ui/vistas/panel-alumno.tsx (Inicio en dos columnas con <Pantalla amplia> y el patrón Columnas cuando Platform.OS === 'web' y el ancho es ≥ 1000; en el móvil una columna), mini-calendario.tsx y utils/progreso.ts (datos calculados en una función pura con su test). QUÉ RESPETAR: estilo monocromo con un único azul (theme.primary, igual en claro y oscuro); tarjetas con <Tarjeta> (cristal); nada de colores sueltos en hex, siempre theme.*; textos en español, en tuteo y sin "por favor"; botones de al menos 44 px; cada estado no solo por color (texto o forma); en el móvil no cambies el orden ni el aspecto salvo que mejore claramente. NO TOQUES src/ui/components/, theme.ts, pantalla.tsx ni la cabecera/pestañas: si necesitas algo nuevo ahí, descríbelo en la PR para PC 1. Puedes crear vistas o utilidades nuevas dentro de src/ui/vistas/ y src/ui/utils/ (con test). En esta tarea no cambies core/, infrastructure/ ni migraciones: eso va por su propia rama de base de datos o backend. LIBERTAD: a partir de aquí improvisa. Si se te ocurre algo útil para tu rol (un dato, un atajo, un gráfico con GraficoBarras o Quesito), propónlo y hazlo, siempre que salga de datos que la app ya carga. Explica en la PR qué has añadido y por qué. ENTREGA: rama feature/pc2-inicio-profe desde la rama del alumno (feature/pc1-calendario-apple) hasta que esté en develop; PR contra develop con una captura de web a 1280 px y otra de móvil; npm run lint, typecheck, test y format:check en verde. Commits tipo(área): qué hace, en español.
 ```
+
+### PC 3 · Empresa
+
+```
+Eres PC 3 del proyecto Kampus y te encargas de pulir el usuario EMPRESA (archivo principal src/ui/vistas/panel-empresa.tsx).
+
+CONTEXTO DEL ROL: El usuario empresa es el tutor de empresa. Ve los alumnos que hacen prácticas con él y cada mes acabado valora su trabajo (Guardar valoración); un mes valorado queda cerrado para el alumno. Hoy el Inicio es 'Mis alumnos en prácticas' con los meses pendientes de valorar. Más adelante validará las horas que registra el alumno (primero la empresa, luego el profe), cuando llegue el backend.
+
+IDEAS PARA EMPEZAR (no son obligatorias): en la web, a un lado los meses pendientes de valorar (lo urgente) y al otro el resumen de cada alumno; horas de la semana de cada uno; un aviso claro cuando todo está valorado.
+
+Lee AGENTS.md y fíjate en cómo está hecho el alumno, que es la referencia: src/ui/vistas/panel-alumno.tsx (Inicio en dos columnas con <Pantalla amplia> y el patrón Columnas cuando Platform.OS === 'web' y el ancho es ≥ 1000; en el móvil una columna), mini-calendario.tsx y utils/progreso.ts (datos calculados en una función pura con su test). QUÉ RESPETAR: estilo monocromo con un único azul (theme.primary, igual en claro y oscuro); tarjetas con <Tarjeta> (cristal); nada de colores sueltos en hex, siempre theme.*; textos en español, en tuteo y sin "por favor"; botones de al menos 44 px; cada estado no solo por color (texto o forma); en el móvil no cambies el orden ni el aspecto salvo que mejore claramente. NO TOQUES src/ui/components/, theme.ts, pantalla.tsx ni la cabecera/pestañas: si necesitas algo nuevo ahí, descríbelo en la PR para PC 1. Puedes crear vistas o utilidades nuevas dentro de src/ui/vistas/ y src/ui/utils/ (con test). En esta tarea no cambies core/, infrastructure/ ni migraciones: eso va por su propia rama de base de datos o backend. LIBERTAD: a partir de aquí improvisa. Si se te ocurre algo útil para tu rol (un dato, un atajo, un gráfico con GraficoBarras o Quesito), propónlo y hazlo, siempre que salga de datos que la app ya carga. Explica en la PR qué has añadido y por qué. ENTREGA: rama feature/pc3-inicio-empresa desde la rama del alumno (feature/pc1-calendario-apple) hasta que esté en develop; PR contra develop con una captura de web a 1280 px y otra de móvil; npm run lint, typecheck, test y format:check en verde. Commits tipo(área): qué hace, en español.
+```
+
+### PC 4 · Instituto
+
+```
+Eres PC 4 del proyecto Kampus y te encargas de pulir el usuario INSTITUTO (archivo principal src/ui/vistas/panel-instituto.tsx (+ centro)).
+
+CONTEXTO DEL ROL: El instituto administra su centro: da de alta empresas y firma o quita convenios, añade alumnos, crea dossiers y publica 'Fechas para todos' (festivos y entregas que ven todos los del centro). Hoy el Inicio mezcla gestión del centro y agenda. Más adelante gestionará profesores y qué alumnos tiene cada uno, e incidencias (ya existe la bandeja en Chat).
+
+IDEAS PARA EMPEZAR (no son obligatorias): en la web, cifras del centro arriba (alumnos, dossiers activos, empresas con convenio), gestión a la izquierda y agenda a la derecha; alumnos sin dossier o sin tutor asignado como avisos.
+
+Lee AGENTS.md y fíjate en cómo está hecho el alumno, que es la referencia: src/ui/vistas/panel-alumno.tsx (Inicio en dos columnas con <Pantalla amplia> y el patrón Columnas cuando Platform.OS === 'web' y el ancho es ≥ 1000; en el móvil una columna), mini-calendario.tsx y utils/progreso.ts (datos calculados en una función pura con su test). QUÉ RESPETAR: estilo monocromo con un único azul (theme.primary, igual en claro y oscuro); tarjetas con <Tarjeta> (cristal); nada de colores sueltos en hex, siempre theme.*; textos en español, en tuteo y sin "por favor"; botones de al menos 44 px; cada estado no solo por color (texto o forma); en el móvil no cambies el orden ni el aspecto salvo que mejore claramente. NO TOQUES src/ui/components/, theme.ts, pantalla.tsx ni la cabecera/pestañas: si necesitas algo nuevo ahí, descríbelo en la PR para PC 1. Puedes crear vistas o utilidades nuevas dentro de src/ui/vistas/ y src/ui/utils/ (con test). En esta tarea no cambies core/, infrastructure/ ni migraciones: eso va por su propia rama de base de datos o backend. LIBERTAD: a partir de aquí improvisa. Si se te ocurre algo útil para tu rol (un dato, un atajo, un gráfico con GraficoBarras o Quesito), propónlo y hazlo, siempre que salga de datos que la app ya carga. Explica en la PR qué has añadido y por qué. ENTREGA: rama feature/pc4-inicio-instituto desde la rama del alumno (feature/pc1-calendario-apple) hasta que esté en develop; PR contra develop con una captura de web a 1280 px y otra de móvil; npm run lint, typecheck, test y format:check en verde. Commits tipo(área): qué hace, en español.
+```
+
+La **Generalitat** queda sin asignar de momento.
 
 ---
 
