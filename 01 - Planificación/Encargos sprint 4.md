@@ -24,6 +24,8 @@ git pull
 | **PC 4** · OpenCode | **Ayudante general** | Tests, `e2e/`, documentación del vault, revisión de PR, estudio del SBIT |
 | **Codex** (en PC 1) | Refuerzo de PC 1 | Revisa las PR de PC 2 y PC 3 antes de fusionar; arreglos pequeños que pida PC 1 |
 
+**Lista de tareas de cada PC:** [[PC 1 · Front]] · [[PC 2 · Base de datos]] · [[PC 3 · Backend]] · [[PC 4 · Ayudante general]]
+
 **Cadena de trabajo:** PC 2 hace la migración → PC 3 monta encima dominio, puerto, casos de uso y adaptadores → PC 1 hace la pantalla. Cada uno avisa al siguiente cuando su PR está en `develop`.
 
 ---
