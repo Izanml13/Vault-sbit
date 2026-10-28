@@ -28,8 +28,8 @@ Solo `src/app/`, `src/ui/hooks/`, `src/ui/vistas/` y `src/ui/utils/`.
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| Probar en el móvil las pantallas de tareas y fechas y pulirlas | `fix/pc2-tareas-fechas` | ⏳ Pendiente | Ya se puede empezar |
-| Ficha del dossier (solo lectura): datos, actividades, horas por actividad | `feature/pc2-ficha-dossier` | ⏳ Pendiente | Ya se puede empezar con `container.dossiers.obtener` |
+| Probar en el móvil las pantallas de tareas y fechas y pulirlas | `fix/pc2-tareas-fechas` | 👀 En revisión | PR #9. Probado en web a 320 y 1280 px; falta Expo Go en móvil real. Para PC 3: la barra de pestañas web no cabe a 320 px |
+| Ficha del dossier (solo lectura): datos, actividades, horas por actividad | `feature/pc2-ficha-dossier` | 👀 En revisión | PR #10. Se abre en Inicio con `?dossier=<id>` desde Seguimiento y desde el panel del alumno |
 | Formulario de crear/editar dossier | `feature/pc2-formulario-dossier` | ⛔ Bloqueado | Espera a `feature/pc1-gestion-dossiers` |
 | Pantalla de incidencias | `feature/pc2-incidencias` | ⛔ Bloqueado | Espera a `feature/pc1-incidencias` |
 
