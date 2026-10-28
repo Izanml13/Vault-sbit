@@ -16,11 +16,11 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| Chat de mensajes por dossier | `feature/pc2-db-chat` | 👀 En revisión (PR #13) | Tabla `mensajes_chat`. Leen y escriben alumno, profe tutor, empresa e instituto; Generalitat solo lee |
-| Clases (grupos) y clase de cada alumno | `feature/pc2-db-clases` | 👀 En revisión (PR #14) | Tabla `grupos` + `perfiles.grupo_id`. Instituto y Generalitat gestionan |
-| Doble validación de horas | `feature/pc2-db-validar-horas` | 👀 En revisión (PR #15) | Empresa valida primero, luego el profe. Día validado = no se edita ni borra. PC 1: el dominio necesita los 4 campos nuevos |
-| Profe: Inicio (inbox, horas por validar, sin apuntar con toque) y pestaña Seguimiento | `feature/pc2-inicio-profe` | 👀 En revisión (PR #16) | Según la pizarra del 28/10. Toca `app-tabs` (pestaña Seguimiento para el profe): revisar PC 1 |
-| Toques de atención del profe al alumno | `feature/pc2-db-toques` | 👀 En revisión (PR #18) | Tabla `toques`, uno al día, se resuelve al apuntar. Falta `ToquePort` (PC 3) y aviso en el Inicio del alumno (PC 1) |
+| Chat de mensajes por dossier | `feature/pc2-db-chat` | 👀 En revisión (PR #13) | Tabla `mensajes_chat`. Leen y escriben alumno, profe tutor, empresa e instituto; Generalitat solo lee. ✅ Aprobada por PC 4 |
+| Clases (grupos) y clase de cada alumno | `feature/pc2-db-clases` | 👀 En revisión (PR #14) | Tabla `grupos` + `perfiles.grupo_id`. Instituto y Generalitat gestionan. ✅ Aprobada por PC 4 |
+| Doble validación de horas | `feature/pc2-db-validar-horas` | 👀 En revisión (PR #15) | Empresa valida primero, luego el profe. Día validado = no se edita ni borra. PC 1: el dominio necesita los 4 campos nuevos. ✅ Aprobada por PC 4 |
+| Profe: Inicio (inbox, horas por validar, sin apuntar con toque) y pestaña Seguimiento | `feature/pc2-inicio-profe` | 👀 En revisión (PR #16) | Según la pizarra del 28/10. Toca `app-tabs` (pestaña Seguimiento para el profe): revisar PC 1. 💬 Comentarios de PC 4: también toca `package.json` (+`react-native-svg`) y arrastra commits de `feature/pc1-calendario-apple`; que decidan PC 1 e Izan |
+| Toques de atención del profe al alumno | `feature/pc2-db-toques` | 👀 En revisión (PR #18) | Tabla `toques`, uno al día, se resuelve al apuntar. Falta `ToquePort` (PC 3) y aviso en el Inicio del alumno (PC 1). ✅ Aprobada por PC 4 |
 
 Las cuatro PR de base de datos (#13, #14, #15 y #18) añaden un bloque al final de `seed.sql`: si hay conflicto al fusionar, quedarse con todos. Probadas juntas.
 
@@ -42,17 +42,20 @@ Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté e
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
 | Revisar y fusionar las PR de base de datos #13, #14, #15 y #18 | — | 🔥 Urgente | Desbloquean a PC 3. Conflicto en `seed.sql`: quedarse con todos los bloques |
-| Revisar y fusionar el Inicio del profe (PR #16) | — | ⏳ Pendiente | Sale de `feature/pc1-calendario-apple`. Toca `app-tabs.tsx` y `app-tabs.web.tsx`: la pestaña del profe se llama Seguimiento |
+| Revisar y fusionar el Inicio del profe (PR #16) | — | ⏳ Pendiente | Sale de `feature/pc1-calendario-apple`. Toca `app-tabs.tsx` y `app-tabs.web.tsx`: la pestaña del profe se llama Seguimiento. 💬 PC 4 comentó: también `package.json` (+`react-native-svg`) y commits de esa rama sin fusionar dentro del diff |
 | Aviso de toque en el Inicio del alumno | `feature/pc1-aviso-toque` | ⛔ Bloqueado | Espera a `feature/pc3-toques`. Arriba de `panel-alumno.tsx`: "Tu tutor te ha dado un toque: llevas N días sin apuntar" + botón "Apuntar ahora" (`/registro`); al verlo, `marcarVisto` |
 | Registrar en `container.ts` los backends nuevos de PC 3 | — | ⏳ Pendiente | Profes del instituto, informes, y después chat, clases, validar horas y toques |
+| Fusionar PR #17 (test de pantallas, PC 4) | `test/pc4-pantallas` | ⏳ Pendiente | 7 tests sobre las pantallas de develop; 126/126 en local |
 
 ### 🧪 PC 4 · Ayudante general · Marco
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| Revisar las PR #16 (Inicio del profe) y #18 (toques) | — | ⏳ Pendiente | Como con #13-#15 |
+| Revisar las PR #16 (Inicio del profe) y #18 (toques) | — | ✅ Hecho | #18 aprobada; #16 con comentarios (zona de PC 1). Como con #13-#15 |
+| Rehacer el test de pantallas | `test/pc4-pantallas` | 👀 En revisión (PR #17) | 7 tests: registro-dia no pisa días, recarga del panel al volver, dossiers por nombre, retry, `useDatos` descarta respuestas viejas. 126/126 en local |
 | Test automático de permisos (RLS) en el CI | `test/pc4-rls` | 💡 Propuesta | Que el CI compruebe con los cinco roles quién ve y cambia cada tabla, para no romper permisos en migraciones futuras |
-| e2e del profe: Inicio, pestaña Seguimiento y darle un toque | `test/pc4-e2e-profe` | ⏳ Pendiente | Cuando se fusione la PR #16 |
+| e2e del profe: Inicio, pestaña Seguimiento y darle un toque | `test/pc4-e2e-profe` | ⛔ Bloqueado | Espera a que se fusione la PR #16 |
+| Estudio del SBIT por rol | — | ⏳ Pendiente | Funciones y flujos en `02 - Requisitos`; necesita aporte de Marco |
 
 ## Sprint 3 · Base completa · cerrado el 2026-10-28
 
@@ -105,7 +108,7 @@ Solo diseño, `e2e/` y el panel web.
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
 | E2E de los flujos: login de los 5 roles, registrar un día, valorar un mes, asignar profe | `test/pc4-e2e-flujos` | ⏳ Pendiente | En el sprint 4 pasa a `test/pc4-e2e` con lo nuevo: ver [[Encargos sprint 4]] |
-| Rehacer el test de pantallas que se apartó en el rescate | `test/pc4-pantallas` | ⏳ Pendiente | Sigue en el sprint 4 |
+| Rehacer el test de pantallas que se apartó en el rescate | `test/pc4-pantallas` | 👀 En revisión | Hecho en el sprint 4 (PR #17); ver la sección del sprint 4 |
 | Web en pantalla ancha (paneles de instituto y Generalitat) | `feature/pc4-web-ancha` | ⏳ Pendiente | El front del sprint 4 lo hace PC 1 |
 | Figma de las pantallas que faltan: dossier, incidencias, Generalitat | — | ⏳ Pendiente | El diseño del sprint 4 lo marca UI UX Pro Max (PC 1) |
 
@@ -132,5 +135,8 @@ Solo diseño, `e2e/` y el panel web.
 | Sprint 3: tareas y fechas pulidas (PR #9) y ficha del dossier (PR #10) | PC 2 | 2026-10-28 |
 | Sprint 3: iconos de pestañas, pestaña Centro para la Generalitat, componentes de tareas, teclado y contraste en oscuro (directo a `develop`, sin PR) | PC 3 | 2026-10-28 |
 | Sprint 4: la barra de pestañas web ya cabe a 320 px (rama `fix/pc3-pestanas-estrechas`) | PC 3 | 2026-10-28 |
+| Sprint 4: revisión de PR #13-15 y #18 (aprobadas) y #16 (comentarios sobre zona de PC 1) | PC 4 | 2026-10-28 |
+| Sprint 4: test de pantallas rehacido para las pantallas de `develop` (PR #17) | PC 4 | 2026-10-28 |
+| Sprint 4: e2e de registro adaptados al calendario plegable (PR #12, esperando fusión) | PC 4 | 2026-10-28 |
 
 Estados: ⏳ Pendiente · 🔄 En curso · 👀 En revisión · ✅ Hecho · ⛔ Bloqueado
