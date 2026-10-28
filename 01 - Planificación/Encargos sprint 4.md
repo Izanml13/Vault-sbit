@@ -115,7 +115,7 @@ Antes de abrir cada PR: npm run lint, npm run typecheck, npm test y npm run form
 ```
 Eres PC 4 del proyecto Kampus. Lee AGENTS.md y respétalo: tu zona es el panel web, e2e/ y diseño.
 
-1. docs/pc4-estudio-sbit — Documento en el vault (02 - Investigación) con las funciones y flujos del SBIT por rol (alumno, profe, empresa, instituto, Generalitat), a partir de capturas y uso propio. NUNCA copies nombres, correos, DNI ni ningún dato personal; tapa o describe. Compara con Kampus: qué tenemos, qué falta, qué hacemos mejor.
+1. docs/pc4-estudio-sbit — Documento en el vault (02 - Requisitos) con las funciones y flujos del SBIT por rol (alumno, profe, empresa, instituto, Generalitat), a partir de capturas y uso propio. NUNCA copies nombres, correos, DNI ni ningún dato personal; tapa o describe. Compara con Kampus: qué tenemos, qué falta, qué hacemos mejor.
 
 2. Diseño en Figma de las pantallas nuevas (footer, calendario, chat, clases del profe, informes) siguiendo el sistema de diseño de PC 3.
 
