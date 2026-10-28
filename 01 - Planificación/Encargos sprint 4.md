@@ -45,6 +45,33 @@ git pull
 
 ---
 
+## 🎭 Reparto por usuario: pulir cada rol (2026-10-28)
+
+Además de su parte del sprint, cada PC se encarga de **pulir las pantallas de un rol**, en móvil y en web. La referencia es el **alumno**, que ya tiene el estilo nuevo: Inicio en dos columnas en la web ancha (≥ 1000 px) y en una sola en el móvil, tarjetas de cristal, quesito de horas, calendario estilo Apple y un único azul (`#2563EB`) en claro y oscuro.
+
+| Rol | Quién | Pantalla principal |
+|---|---|---|
+| **Alumno** | PC 1 · Izan (Claude Code) | `src/ui/vistas/panel-alumno.tsx` (+ calendario y registro) |
+| **Profe** | PC 2 · Bouba | `src/ui/vistas/panel-profe.tsx` (+ ficha del dossier) |
+| **Empresa** | PC 3 | `src/ui/vistas/panel-empresa.tsx` |
+| **Instituto** | PC 4 | `src/ui/vistas/panel-instituto.tsx` |
+| Generalitat | Sin asignar de momento | — |
+
+**Normas para todos:**
+- Rama propia que sale de la rama del alumno hasta que esté en `develop`: `feature/pcN-inicio-<rol>` (ej. `feature/pc2-inicio-profe`). PR contra `develop`.
+- Solo tocáis **la vista de vuestro rol**. Los componentes compartidos (`src/ui/components/`, `theme.ts`, `pantalla.tsx`, cabecera y pestañas) son de PC 1: si necesitáis uno nuevo o un cambio, pedidlo en la PR.
+- Reutilizad lo que ya hay: `Tarjeta`, `Quesito`, `Leyenda`, `GraficoBarras`, `SelectorFecha`, `Pantalla amplia` y el patrón `Columnas` de `panel-alumno.tsx`.
+- El móvil no se cambia de orden ni de aspecto salvo que haga falta: lo horizontal es solo para la web ancha.
+- Antes de la PR: `npm run lint`, `npm run typecheck`, `npm test` y `npm run format:check` en verde, y una captura de web (1280 px) y otra de móvil en la descripción.
+
+**Encargo para pegar en el agente** (cambiad ROL, PC y archivo):
+
+```
+Eres PCN del proyecto Kampus. Lee AGENTS.md. Tu tarea es pulir la pantalla de Inicio del rol ROL (archivo src/ui/vistas/panel-ROL.tsx) siguiendo el estilo de src/ui/vistas/panel-alumno.tsx: en la web ancha (Platform.OS === 'web' y ancho ≥ 1000) el panel va en dos columnas con <Pantalla amplia>; en el móvil se queda en una columna como ahora. Usa solo los componentes que ya existen (Tarjeta, Quesito, Leyenda, GraficoBarras...). No toques src/ui/components/, theme.ts ni pantalla.tsx: si necesitas algo de ahí, descríbelo en la PR para PC 1. Rama feature/pcN-inicio-ROL y PR contra develop con capturas de web y móvil. Commits tipo(área): qué hace, en español.
+```
+
+---
+
 ## 🧠 PC 1 · Claude Code · Todo el front
 
 Lo hace Claude, en este orden:
