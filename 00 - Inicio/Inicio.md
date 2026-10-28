@@ -11,6 +11,7 @@
 - 🎨 [[Arquitectura y stack]]
 - 🖌️ [[Sistema de diseño]]
 - 🧪 [[Guía de desarrollo]]
+- 🌿 [[Flujo de ramas]]
 - 🗓️ Reuniones → carpeta `05 - Reuniones`
 - 👥 [[Equipo y roles]]
 

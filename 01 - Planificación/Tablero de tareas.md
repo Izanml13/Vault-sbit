@@ -8,7 +8,7 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 
 **Punto de partida (ya en `main`):** login, pestañas por rol, panel del alumno, registro diario, valoración mensual (empresa), seguimiento y valoración final (profe), componentes base y adaptadores Supabase y memoria. Para probar: `npx expo start --web` y las cuentas de prueba del login.
 
-**Cómo trabajar:** `git pull` en `main` → rama `feature/pcN-...` → `npm run lint`, `npm run typecheck` y `npm run format:check` → PR. PC 1 revisa y fusiona.
+**Cómo trabajar (desde 2026-10-28):** `git pull` en `develop` → rama `feature/`, `fix/`, `test/` o `docs/` + `pcN-...` → `npm run lint`, `npm run typecheck`, `npm test` y `npm run format:check` → PR **contra `develop`**. PC 1 revisa y fusiona; las releases `develop → main` las hace PC 1. Ver [[Flujo de ramas]].
 
 ### 🧠 PC 1 · Izan · Claude Code + Codex
 
