@@ -16,6 +16,6 @@
 - 👥 [[Equipo y roles]]
 
 ## Estado actual
-- **Fase:** 0 — Arranque (stack decidido)
+- **Fase:** 3 — Desarrollo (sprint 4: front y comunicación)
 - **Stack:** React Native + Expo · Supabase · Vercel → [[Arquitectura y stack]]
-- **Última actualización:** 2026-10-26
+- **Última actualización:** 2026-10-28

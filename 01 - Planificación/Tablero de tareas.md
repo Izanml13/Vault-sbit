@@ -22,36 +22,36 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 
 Las tres PR añaden un bloque al final de `seed.sql`: si hay conflicto al fusionar, quedarse con todos. Probadas juntas.
 
-## Sprint 3 · Base completa (desde 2026-10-28)
+## Sprint 3 · Base completa · cerrado el 2026-10-28
 
 **Objetivo:** que la base esté entera (dossiers, tareas, incidencias, generalitat) para dedicarnos después solo a mejorar el front.
 
 **Punto de partida (en `develop`):** los cinco roles con sus pantallas, registro diario, valoraciones, Centro del instituto, tareas y fechas del calendario, datos demo de los cinco roles y 65 tests.
 
-**Cómo trabajar:** ver [[Flujo de ramas]]. Resumen: `git pull` en `develop` → rama `tipo/pcN-...` → `npm run lint`, `npm run typecheck`, `npm test` y `npm run format:check` → PR **contra `develop`**. PC 1 revisa y fusiona.
+**Cómo se trabajó:** ver [[Flujo de ramas]]. `git pull` en `develop` → rama `tipo/pcN-...` → `npm run lint`, `npm run typecheck`, `npm test` y `npm run format:check` → PR **contra `develop`**.
 
-**Encargos listos para pegar en cada OpenCode:** [[Encargos sprint 3]].
+**Encargos del sprint:** [[Encargos sprint 3]].
 
 ### 🧠 PC 1 · Izan · Claude Code + Codex
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| Gestión de dossiers: crear y editar dossier con actividades | `feature/pc1-gestion-dossiers` | ⏳ Pendiente | Puerto + casos de uso + adaptadores. Desbloquea el formulario de PC 2 |
-| `listarCentros()` y crear centros (Generalitat) | `feature/pc1-centros-generalitat` | ⏳ Pendiente | Pedido en la PR #8 |
-| Incidencias: migración, núcleo y adaptadores | `feature/pc1-incidencias` | ⏳ Pendiente | Las abre cualquiera; las resuelven instituto y Generalitat |
-| Selector de fecha (dependencia nueva) | `ops/pc1-selector-fecha` | ⏳ Pendiente | Hoy las fechas se escriben a mano |
-| Primera release `develop → main` | — | ⏳ Pendiente | Tras probar los cinco roles en web y simulador |
-| Revisar y fusionar PR | — | 🔄 Continuo | |
+| Gestión de dossiers: crear y editar dossier con actividades | `feature/pc1-gestion-dossiers` | ✅ Hecho | Dominio (`BorradorDossier`, `comprobarDossier`), casos de uso (`guardarDossier`, `borrarDossier`, `obtenerOpcionesDossier`, `listarTutoresEmpresa`), adaptadores memoria y Supabase y migración `20261028074336_guardar_dossier.sql` (transacción + RLS). 17 tests nuevos |
+| `listarCentros()` y crear centros (Generalitat) | `feature/pc1-centros-generalitat` | ✅ Hecho | Puerto, casos de uso y adaptadores. Pedido en la PR #8; la pantalla la hace PC 1 en el sprint 4 |
+| Incidencias: migración, núcleo y adaptadores | `feature/pc1-incidencias` | ✅ Hecho | Migración `20261028090000_incidencias.sql`, dominio y puerto, casos de uso (abrir, corregir, atender, escalar, resolver, borrar y mensajes entre participantes) y adaptadores memoria y Supabase. El profe tutor sigue las de sus alumnos |
+| Selector de fecha (dependencia nueva) | `ops/pc1-selector-fecha` | ⏳ Pendiente | Pasa al sprint 4 (`ops/pc1-selector-fecha`) |
+| Primera release `develop → main` | — | ⏳ Pendiente | `main` va 43 commits por detrás; falta probar los cinco roles en web y simulador |
+| Revisar y fusionar PR | — | ✅ Hecho | Revisadas las cinco tareas de PC 3 y las dos PR de PC 2; todo integrado en `develop` el 2026-10-28 |
 
 ### 📱 PC 2 · Pantallas · OpenCode
 Solo `src/app/`, `src/ui/hooks/`, `src/ui/vistas/` y `src/ui/utils/`.
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| Probar en el móvil las pantallas de tareas y fechas y pulirlas | `fix/pc2-tareas-fechas` | 👀 En revisión | PR #9. Probado en web a 320 y 1280 px; falta Expo Go en móvil real. Para PC 3: la barra de pestañas web no cabe a 320 px |
-| Ficha del dossier (solo lectura): datos, actividades, horas por actividad | `feature/pc2-ficha-dossier` | 👀 En revisión | PR #10. Se abre en Inicio con `?dossier=<id>` desde Seguimiento y desde el panel del alumno |
-| Formulario de crear/editar dossier | `feature/pc2-formulario-dossier` | ⛔ Bloqueado | Espera a `feature/pc1-gestion-dossiers` |
-| Pantalla de incidencias | `feature/pc2-incidencias` | ⛔ Bloqueado | Espera a `feature/pc1-incidencias` |
+| Probar en el móvil las pantallas de tareas y fechas y pulirlas | `fix/pc2-tareas-fechas` | ✅ Hecho | PR #9, en `develop` desde 2026-10-28. Probado en web a 320 y 1280 px; falta Expo Go en móvil real. La barra de pestañas web a 320 px la arregló PC 3 (`fix/pc3-pestanas-estrechas`) |
+| Ficha del dossier (solo lectura): datos, actividades, horas por actividad | `feature/pc2-ficha-dossier` | ✅ Hecho | PR #10, en `develop` desde 2026-10-28. Se abre en Inicio con `?dossier=<id>` desde Seguimiento y desde el panel del alumno |
+| Formulario de crear/editar dossier | `feature/pc2-formulario-dossier` | ⏳ Pendiente | Desbloqueado: ya está en `develop` el núcleo de dossiers. En el sprint 4 la pantalla la hace PC 1 |
+| Pantalla de incidencias | `feature/pc2-incidencias` | ⏳ Pendiente | Desbloqueado: ya está en `develop` el núcleo de incidencias. En el sprint 4 la pantalla la hace PC 1 |
 
 ### 🧩 PC 3 · Componentes, tema y datos de prueba · OpenCode
 Solo `src/ui/components/`, `src/ui/theme/` y `src/infrastructure/memory/`.
@@ -63,19 +63,19 @@ Solo `src/ui/components/`, `src/ui/theme/` y `src/infrastructure/memory/`.
 | Pestaña *Centro* también para la Generalitat | `feature/pc3-pestana-centro` | ✅ Hecho | En móvil y web; `centro.tsx` y `PanelInstituto` ya la admitían |
 | Componentes: casilla de tarea, chip de tipo de evento, insignia "vencida" | `feature/pc3-componentes-tareas` | ✅ Hecho | `CasillaTarea`, `ChipTipoEvento` e `InsigniaVencida`; PC 2 puede usarlos ya en tareas y fechas |
 | `Pantalla` con teclado cómodo (`keyboardShouldPersistTaps`, `keyboardDismissMode`) | `fix/pc3-teclado` | ✅ Hecho | Aplicado en el componente `Pantalla` |
-| Repaso de modo oscuro y contraste en todas las pantallas | `fix/pc3-modo-oscuro` | ✅ Hecho | Todo el tema pasa 4,5:1. Queda el `opacity: 0.35` de los días fuera de periodo en `vistas/calendario-mes.tsx` (es de PC 2) |
+| Repaso de modo oscuro y contraste en todas las pantallas | `fix/pc3-modo-oscuro` | ✅ Hecho | Todo el tema pasa 4,5:1. Queda el `opacity: 0.35` de los días fuera de periodo en `vistas/calendario-mes.tsx` (front de PC 1 en el sprint 4) |
 
-Las cinco tareas entraron en `develop` el 2026-10-28 **sin PR**, a petición de PC 3: PC 1 solo tiene que revisarlas.
+Las cinco tareas entraron en `develop` el 2026-10-28 **sin PR**, a petición de PC 3. PC 1 las revisó y están fusionadas en `develop`.
 
 ### 🎨 PC 4 · Diseño, web y QA · OpenCode
 Solo diseño, `e2e/` y el panel web.
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| E2E de los flujos: login de los 5 roles, registrar un día, valorar un mes, asignar profe | `test/pc4-e2e-flujos` | ⏳ Pendiente | Backend memoria |
-| Rehacer el test de pantallas que se apartó en el rescate | `test/pc4-pantallas` | ⏳ Pendiente | Ver commit "Rescata de pc1-correcciones-pantallas" |
-| Web en pantalla ancha (paneles de instituto y Generalitat) | `feature/pc4-web-ancha` | ⏳ Pendiente | Coordinar con PC 2 si toca `vistas/` |
-| Figma de las pantallas que faltan: dossier, incidencias, Generalitat | — | ⏳ Pendiente | Referencia para PC 2 |
+| E2E de los flujos: login de los 5 roles, registrar un día, valorar un mes, asignar profe | `test/pc4-e2e-flujos` | ⏳ Pendiente | En el sprint 4 pasa a `test/pc4-e2e` con lo nuevo: ver [[Encargos sprint 4]] |
+| Rehacer el test de pantallas que se apartó en el rescate | `test/pc4-pantallas` | ⏳ Pendiente | Sigue en el sprint 4 |
+| Web en pantalla ancha (paneles de instituto y Generalitat) | `feature/pc4-web-ancha` | ⏳ Pendiente | El front del sprint 4 lo hace PC 1 |
+| Figma de las pantallas que faltan: dossier, incidencias, Generalitat | — | ⏳ Pendiente | El diseño del sprint 4 lo marca UI UX Pro Max (PC 1) |
 
 ## Hecho
 
@@ -93,8 +93,12 @@ Solo diseño, `e2e/` y el panel web.
 | Sprint 2: calendario, registro móvil, estados vacíos, nombres, tareas y fechas, vista Generalitat (PR #3-#8) | PC 2 | 2026-10-28 |
 | Sprint 2: logo, celda de calendario, accesibilidad y datos demo (rama `botones`) | PC 3 | 2026-10-28 |
 | Sprint 2: tests E2E de login y registro (PR #7 fusionada; adaptados a develop) | PC 4 | 2026-10-27 |
-| Sprint 3: iconos de pestañas, pestaña Centro para la Generalitat, componentes de tareas, teclado y contraste en oscuro (directo a `develop`, sin PR) | PC 3 | 2026-10-28 |
 | Flujo de ramas `main`/`develop` y limpieza de ramas | Izan | 2026-10-28 |
-
+| Sprint 3: crear, editar y borrar dossiers con actividades (dominio, casos de uso, adaptadores y migración) | Izan | 2026-10-28 |
+| Sprint 3: incidencias (migración, núcleo, adaptadores y mensajes) | Izan | 2026-10-28 |
+| Sprint 3: listar y crear centros desde la Generalitat (núcleo y adaptadores) | Izan | 2026-10-28 |
+| Sprint 3: tareas y fechas pulidas (PR #9) y ficha del dossier (PR #10) | PC 2 | 2026-10-28 |
+| Sprint 3: iconos de pestañas, pestaña Centro para la Generalitat, componentes de tareas, teclado y contraste en oscuro (directo a `develop`, sin PR) | PC 3 | 2026-10-28 |
+| Sprint 4: la barra de pestañas web ya cabe a 320 px (rama `fix/pc3-pestanas-estrechas`) | PC 3 | 2026-10-28 |
 
 Estados: ⏳ Pendiente · 🔄 En curso · 👀 En revisión · ✅ Hecho · ⛔ Bloqueado
