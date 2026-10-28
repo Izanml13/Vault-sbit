@@ -2,64 +2,58 @@
 
 Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 
-## Sprint 2 · MVP usable (desde 2026-10-27)
+## Sprint 3 · Base completa (desde 2026-10-28)
 
-**Objetivo:** el alumno apunta sus días, la empresa valora el mes y el profe pone la valoración final, con datos reales en Supabase, en web y en móvil.
+**Objetivo:** que la base esté entera (dossiers, tareas, incidencias, generalitat) para dedicarnos después solo a mejorar el front.
 
-**Punto de partida (ya en `main`):** login, pestañas por rol, panel del alumno, registro diario, valoración mensual (empresa), seguimiento y valoración final (profe), componentes base y adaptadores Supabase y memoria. Para probar: `npx expo start --web` y las cuentas de prueba del login.
+**Punto de partida (en `develop`):** los cinco roles con sus pantallas, registro diario, valoraciones, Centro del instituto, tareas y fechas del calendario, datos demo de los cinco roles y 65 tests.
 
-**Cómo trabajar (desde 2026-10-28):** `git pull` en `develop` → rama `feature/`, `fix/`, `test/` o `docs/` + `pcN-...` → `npm run lint`, `npm run typecheck`, `npm test` y `npm run format:check` → PR **contra `develop`**. PC 1 revisa y fusiona; las releases `develop → main` las hace PC 1. Ver [[Flujo de ramas]].
+**Cómo trabajar:** ver [[Flujo de ramas]]. Resumen: `git pull` en `develop` → rama `tipo/pcN-...` → `npm run lint`, `npm run typecheck`, `npm test` y `npm run format:check` → PR **contra `develop`**. PC 1 revisa y fusiona.
+
+**Encargos listos para pegar en cada OpenCode:** [[Encargos sprint 3]].
 
 ### 🧠 PC 1 · Izan · Claude Code + Codex
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| Aplicar en Supabase la migración de roles y valoraciones | — | ✅ Hecho | Con `npm run db:subir`; la web ya funciona en Supabase con los 3 roles |
-| Nombre del alumno y del tutor en el dossier | `feature/pc1-dossier-nombres` | ✅ Hecho | `alumnoNombre`, `tutorNombre`, `tutorEmpresaNombre` en `Dossier` |
-| Tests unitarios con Jest (registro, valoraciones, fechas) | `feature/pc1-tests` | ✅ Hecho | 35 tests; `npm test` en el CI |
-| Modelo ER: centros, empresas, convenios y alumnos por centro | `feature/pc1-centros-empresas` | ✅ Hecho | Migración `20261027000000`; el profe solo ve su centro. Aplicada en Supabase |
-| Migraciones con la CLI: CI desde cero, despliegue automático y backup | `feature/pc1-migraciones-ci` | ✅ Hecho | Al fusionar una migración en `main` se aplica sola en Supabase. Normas en `AGENTS.md` |
-| Cinco roles del ER: generalitat, instituto, profe, empresa y alumno | `feature/pc1-cinco-roles` | ✅ Hecho | Migración `20261027010000` (desplegada sola). Sustituye la PR 2. Faltan pantallas de instituto (asignar alumnos) y generalitat |
-| Pantalla del instituto: asignar alumnos a profes, cuentas nuevas y convenios | `feature/pc1-pantalla-instituto` | ✅ Hecho | Pestaña Centro. Pendiente: vista de la generalitat (elegir centro) e incidencias |
-| Núcleo de tareas y calendario (dominio, puerto, casos de uso, adaptadores) | `feature/pc1-tareas` | ⏳ Pendiente | Tablas ya creadas en Supabase |
-| Revisar y fusionar las PR de PC 2, 3 y 4 | — | 🔄 Continuo | |
+| Gestión de dossiers: crear y editar dossier con actividades | `feature/pc1-gestion-dossiers` | ⏳ Pendiente | Puerto + casos de uso + adaptadores. Desbloquea el formulario de PC 2 |
+| `listarCentros()` y crear centros (Generalitat) | `feature/pc1-centros-generalitat` | ⏳ Pendiente | Pedido en la PR #8 |
+| Incidencias: migración, núcleo y adaptadores | `feature/pc1-incidencias` | ⏳ Pendiente | Las abre cualquiera; las resuelven instituto y Generalitat |
+| Selector de fecha (dependencia nueva) | `ops/pc1-selector-fecha` | ⏳ Pendiente | Hoy las fechas se escriben a mano |
+| Primera release `develop → main` | — | ⏳ Pendiente | Tras probar los cinco roles en web y simulador |
+| Revisar y fusionar PR | — | 🔄 Continuo | |
 
 ### 📱 PC 2 · Pantallas · OpenCode
 Solo `src/app/`, `src/ui/hooks/`, `src/ui/vistas/` y `src/ui/utils/`.
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| Calendario mensual del alumno con el estado de cada día | `feature/pc2-calendario` | ✅ Hecho | PR #3. Tocar un día abre su registro |
-| Pulir el registro diario en móvil (teclado, scroll, botones) | `feature/pc2-registro-movil` | ✅ Hecho | PR #4. Falta probarlo en Expo Go en un móvil real |
-| Estados vacíos y de carga en los tres paneles | `feature/pc2-estados` | ✅ Hecho | PR #5 |
-| Nombre del alumno en las tarjetas de empresa y profe | `feature/pc2-nombres` | ✅ Hecho | PR #6 |
-| Pantallas de tareas y fechas del calendario | `feature/pc2-tareas-calendario` | 👀 En revisión | PR #8. **Fusionar antes `feature/pc1-tareas-calendario`** (va encima) |
-| Vista de la Generalitat: elegir instituto y gestionarlo | `feature/pc2-tareas-calendario` | 👀 En revisión | PR #8. Botón "Gestionar institutos" en Seguimiento |
-
-**Pendiente para otros PCs (salió en la PR #8):**
-- **PC 1:** `listarCentros()` en `GestionCentroPort`. Ahora la Generalitat solo ve los institutos que ya tienen algún dossier.
-- **PC 3:** mostrar la pestaña *Centro* también a la Generalitat en `app-tabs` (ahora entra con un botón).
-- **PC 1:** selector de fecha (dependencia nueva). Ahora las fechas se escriben a mano (`AAAA-MM-DD`).
-- **PC 3 (opcional):** `Pantalla` con `keyboardShouldPersistTaps="handled"` y `keyboardDismissMode="on-drag"` (PR #4).
+| Probar en el móvil las pantallas de tareas y fechas y pulirlas | `fix/pc2-tareas-fechas` | ⏳ Pendiente | Ya se puede empezar |
+| Ficha del dossier (solo lectura): datos, actividades, horas por actividad | `feature/pc2-ficha-dossier` | ⏳ Pendiente | Ya se puede empezar con `container.dossiers.obtener` |
+| Formulario de crear/editar dossier | `feature/pc2-formulario-dossier` | ⛔ Bloqueado | Espera a `feature/pc1-gestion-dossiers` |
+| Pantalla de incidencias | `feature/pc2-incidencias` | ⛔ Bloqueado | Espera a `feature/pc1-incidencias` |
 
 ### 🧩 PC 3 · Componentes, tema y datos de prueba · OpenCode
 Solo `src/ui/components/`, `src/ui/theme/` y `src/infrastructure/memory/`.
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| Cambiar el logo animado de Expo por la K de Kampus | `feature/pc3-logo-animado` | ⏳ Pendiente | `animated-icon.tsx` y `.web.tsx`; logo en `assets/brand/` |
-| Datos de prueba realistas en memoria (2-3 alumnos, días de septiembre y octubre) | `feature/pc3-datos-demo` | ⏳ Pendiente | Mismos IDs que `supabase/seed.sql` donde se pueda |
-| Componente `CeldaCalendario` (día, estado, horas) | `feature/pc3-celda-calendario` | ⏳ Pendiente | Lo usará PC 2 en el calendario |
-| Repaso de accesibilidad de los componentes base | `feature/pc3-accesibilidad` | ⏳ Pendiente | Contraste, 44 px mínimo, etiquetas para lector de pantalla |
+| **Antes de nada:** actualizarse desde `develop` (los datos demo han cambiado) | — | ⏳ Pendiente | `IDS_DEMO` en `datos-demo.ts` |
+| Iconos reales en la barra inferior (Registrar y Perfil sin icono genérico) | `feature/pc3-iconos-pestanas` | ⏳ Pendiente | |
+| Pestaña *Centro* también para la Generalitat | `feature/pc3-pestana-centro` | ⏳ Pendiente | `app-tabs.tsx` y `.web.tsx`. Pedido en la PR #8 |
+| Componentes: casilla de tarea, chip de tipo de evento, insignia "vencida" | `feature/pc3-componentes-tareas` | ⏳ Pendiente | Para que PC 2 los use en tareas y fechas |
+| `Pantalla` con teclado cómodo (`keyboardShouldPersistTaps`, `keyboardDismissMode`) | `fix/pc3-teclado` | ⏳ Pendiente | Pedido en la PR #4 |
+| Repaso de modo oscuro y contraste en todas las pantallas | `fix/pc3-modo-oscuro` | ⏳ Pendiente | |
 
 ### 🎨 PC 4 · Diseño, web y QA · OpenCode
 Solo diseño, `e2e/` y el panel web.
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| Mockups en Figma de las pantallas actuales y del calendario | — | ⏳ Pendiente | Tema monocromo, Inter y el logo del archivo "Kampus · Logo" |
-| Tests E2E con Playwright de la web: login y registrar un día | `feature/pc4-e2e` | ✅ Hecho | Contra `npx expo start --web`, backend memoria |
-| Revisión de experiencia de uso con los tres roles | — | ⏳ Pendiente | Apuntar las propuestas como tareas en este tablero |
+| E2E de los flujos: login de los 5 roles, registrar un día, valorar un mes, asignar profe | `test/pc4-e2e-flujos` | ⏳ Pendiente | Backend memoria |
+| Rehacer el test de pantallas que se apartó en el rescate | `test/pc4-pantallas` | ⏳ Pendiente | Ver commit "Rescata de pc1-correcciones-pantallas" |
+| Web en pantalla ancha (paneles de instituto y Generalitat) | `feature/pc4-web-ancha` | ⏳ Pendiente | Coordinar con PC 2 si toca `vistas/` |
+| Figma de las pantallas que faltan: dossier, incidencias, Generalitat | — | ⏳ Pendiente | Referencia para PC 2 |
 
 ## Hecho
 
@@ -73,5 +67,11 @@ Solo diseño, `e2e/` y el panel web.
 | Docker de la versión web | Izan | 2026-10-26 |
 | Logo, icono, favicon y splash | Izan | 2026-10-26 |
 | Login, pestañas por rol y pantallas de los tres roles | Izan | 2026-10-27 |
+| Sprint 2: valoraciones, 5 roles, modelo ER (centros, empresas, convenios), pantalla Centro, migraciones con CI y despliegue | Izan · Bouba | 2026-10-27 |
+| Sprint 2: calendario, registro móvil, estados vacíos, nombres, tareas y fechas, vista Generalitat (PR #3-#8) | PC 2 | 2026-10-28 |
+| Sprint 2: logo, celda de calendario, accesibilidad y datos demo (rama `botones`) | PC 3 | 2026-10-28 |
+| Sprint 2: tests E2E de login y registro | PC 4 | 2026-10-27 |
+| Flujo de ramas `main`/`develop` y limpieza de ramas | Izan | 2026-10-28 |
+
 
 Estados: ⏳ Pendiente · 🔄 En curso · 👀 En revisión · ✅ Hecho · ⛔ Bloqueado
