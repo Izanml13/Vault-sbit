@@ -12,6 +12,16 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 
 **Cadena:** PC 2 migración → PC 3 núcleo y adaptadores → PC 1 pantalla.
 
+### 🗄️ PC 2 · Base de datos · Boubacar
+
+| Tarea | Rama | Estado | Notas |
+|---|---|---|---|
+| Chat de mensajes por dossier | `feature/pc2-db-chat` | 👀 En revisión (PR #13) | Tabla `mensajes_chat`. Leen y escriben alumno, profe tutor, empresa e instituto; Generalitat solo lee |
+| Clases (grupos) y clase de cada alumno | `feature/pc2-db-clases` | 👀 En revisión (PR #14) | Tabla `grupos` + `perfiles.grupo_id`. Instituto y Generalitat gestionan |
+| Doble validación de horas | `feature/pc2-db-validar-horas` | 👀 En revisión (PR #15) | Empresa valida primero, luego el profe. Día validado = no se edita ni borra. PC 1: el dominio necesita los 4 campos nuevos |
+
+Las tres PR añaden un bloque al final de `seed.sql`: si hay conflicto al fusionar, quedarse con todos. Probadas juntas.
+
 ## Sprint 3 · Base completa (desde 2026-10-28)
 
 **Objetivo:** que la base esté entera (dossiers, tareas, incidencias, generalitat) para dedicarnos después solo a mejorar el front.

@@ -2,15 +2,15 @@
 
 [⬅ Volver al reparto](../Encargos%20sprint%204.md) · **Prompt para pegar en OpenCode:** en [Encargos sprint 4](../Encargos%20sprint%204.md), bloque "PC 2"
 
-**Persona:** _(escribe tu nombre)_
+**Persona:** Boubacar
 **Tu zona:** `supabase/migrations/` (solo migraciones nuevas, nunca editar una que ya esté en `main`) y `supabase/seed.sql`. No tocas `src/`.
 **Cuando se fusione cada PR:** avisa a PC 3, que monta el backend encima.
 
 ## Tareas (en orden, marca `[x]` al terminar)
 
-- [ ] **`feature/pc2-db-chat`**: mensajes de chat por dossier. RLS: leen y escriben alumno, profe tutor, tutor de empresa e instituto del centro; la Generalitat solo lee. Datos en el seed.
-- [ ] **`feature/pc2-db-clases`**: tabla `grupos` (ciclo, curso, letra, centro) y `grupo_id` en los alumnos. RLS: instituto y Generalitat gestionan; profe y alumno leen.
-- [ ] **`feature/pc2-db-validar-horas`**: doble validación (primero la empresa, luego el profe). Un registro validado no se edita ni se borra.
+- [x] **`feature/pc2-db-chat`** (PR #13): mensajes de chat por dossier. RLS: leen y escriben alumno, profe tutor, tutor de empresa e instituto del centro; la Generalitat solo lee. Datos en el seed.
+- [x] **`feature/pc2-db-clases`** (PR #14): tabla `grupos` (ciclo, curso, letra, centro) y `grupo_id` en los alumnos. RLS: instituto y Generalitat gestionan; profe y alumno leen.
+- [x] **`feature/pc2-db-validar-horas`** (PR #15): doble validación (primero la empresa, luego el profe). Un registro validado no se edita ni se borra.
 
 ## Cómo comprobar cada una
 
