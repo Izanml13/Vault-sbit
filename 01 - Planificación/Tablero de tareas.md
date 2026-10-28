@@ -22,6 +22,18 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 
 Las tres PR añaden un bloque al final de `seed.sql`: si hay conflicto al fusionar, quedarse con todos. Probadas juntas.
 
+### ⚙️ PC 3 · Backend · OpenCode
+
+| Tarea | Rama | Estado | Notas |
+|---|---|---|---|
+| Profesores del centro con sus alumnos y reasignar en bloque | `feature/pc3-profes-instituto` | 👀 En revisión | `obtenerRepartoProfes` (cada profe con sus alumnos y los que no tienen tutor) y `reasignarAlumnos`; puerto con `asignarProfeEnBloque`, una sola consulta en Supabase. 12 tests. Para PC 1: no está en `container.ts` |
+| Informes por rol | `feature/pc3-informes` | 👀 En revisión | Solo lectura: alumno (horas totales y por mes), profe y empresa (progreso de sus alumnos), instituto (por profe y por empresa), Generalitat (por centro). 16 tests. Para PC 1: no está en `container.ts` |
+| Chat por dossier | `feature/pc3-chat` | ⛔ Bloqueado | Espera a `feature/pc2-db-chat` (PR #13) |
+| Clases (grupos) y "mis clases" del profe | `feature/pc3-clases` | ⛔ Bloqueado | Espera a `feature/pc2-db-clases` (PR #14) |
+| Doble validación de horas | `feature/pc3-validar-horas` | ⛔ Bloqueado | Espera a `feature/pc2-db-validar-horas` (PR #15) |
+
+Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté en `develop`: el dominio sale de la tabla, no al revés. El progreso por clase de los informes llegará con los grupos; hasta entonces el profe ve a sus alumnos.
+
 ## Sprint 3 · Base completa · cerrado el 2026-10-28
 
 **Objetivo:** que la base esté entera (dossiers, tareas, incidencias, generalitat) para dedicarnos después solo a mejorar el front.
