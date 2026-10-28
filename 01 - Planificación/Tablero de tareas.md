@@ -22,7 +22,7 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 | Profe: Inicio (inbox, horas por validar, sin apuntar con toque) y pestaña Seguimiento | `feature/pc2-inicio-profe` | 👀 En revisión (PR #16) | Según la pizarra del 28/10. Toca `app-tabs` (pestaña Seguimiento para el profe): revisar PC 1 |
 | Toques de atención del profe al alumno | `feature/pc2-db-toques` | 👀 En revisión (PR #18) | Tabla `toques`, uno al día, se resuelve al apuntar. Falta `ToquePort` (PC 3) y aviso en el Inicio del alumno (PC 1) |
 
-Las tres PR añaden un bloque al final de `seed.sql`: si hay conflicto al fusionar, quedarse con todos. Probadas juntas.
+Las cuatro PR de base de datos (#13, #14, #15 y #18) añaden un bloque al final de `seed.sql`: si hay conflicto al fusionar, quedarse con todos. Probadas juntas.
 
 ### ⚙️ PC 3 · Backend · OpenCode
 
@@ -32,9 +32,27 @@ Las tres PR añaden un bloque al final de `seed.sql`: si hay conflicto al fusion
 | Informes por rol | `feature/pc3-informes` | 👀 En revisión | Solo lectura: alumno (horas totales y por mes), profe y empresa (progreso de sus alumnos), instituto (por profe y por empresa), Generalitat (por centro). 16 tests. Para PC 1: no está en `container.ts` |
 | Chat por dossier | `feature/pc3-chat` | ⛔ Bloqueado | Espera a `feature/pc2-db-chat` (PR #13) |
 | Clases (grupos) y "mis clases" del profe | `feature/pc3-clases` | ⛔ Bloqueado | Espera a `feature/pc2-db-clases` (PR #14) |
-| Doble validación de horas | `feature/pc3-validar-horas` | ⛔ Bloqueado | Espera a `feature/pc2-db-validar-horas` (PR #15) |
+| Doble validación de horas | `feature/pc3-validar-horas` | ⛔ Bloqueado | Espera a `feature/pc2-db-validar-horas` (PR #15). El Inicio del profe (PR #16) necesita listar los días ya validados por la empresa y pendientes del profe, y validar varios de una vez |
+| Toques de atención | `feature/pc3-toques` | ⛔ Bloqueado | Espera a `feature/pc2-db-toques` (PR #18). `ToquePort`: `dar(dossierId, diasSinApuntar)`, `pendientesDelAlumno()`, `ultimosPorDossier(ids)` y `marcarVisto(id)`; adaptadores memoria y Supabase. Detalle en la PR #18 |
 
 Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté en `develop`: el dominio sale de la tabla, no al revés. El progreso por clase de los informes llegará con los grupos; hasta entonces el profe ve a sus alumnos.
+
+### 🧠 PC 1 · Izan · Claude Code + Codex
+
+| Tarea | Rama | Estado | Notas |
+|---|---|---|---|
+| Revisar y fusionar las PR de base de datos #13, #14, #15 y #18 | — | 🔥 Urgente | Desbloquean a PC 3. Conflicto en `seed.sql`: quedarse con todos los bloques |
+| Revisar y fusionar el Inicio del profe (PR #16) | — | ⏳ Pendiente | Sale de `feature/pc1-calendario-apple`. Toca `app-tabs.tsx` y `app-tabs.web.tsx`: la pestaña del profe se llama Seguimiento |
+| Aviso de toque en el Inicio del alumno | `feature/pc1-aviso-toque` | ⛔ Bloqueado | Espera a `feature/pc3-toques`. Arriba de `panel-alumno.tsx`: "Tu tutor te ha dado un toque: llevas N días sin apuntar" + botón "Apuntar ahora" (`/registro`); al verlo, `marcarVisto` |
+| Registrar en `container.ts` los backends nuevos de PC 3 | — | ⏳ Pendiente | Profes del instituto, informes, y después chat, clases, validar horas y toques |
+
+### 🧪 PC 4 · Ayudante general · Marco
+
+| Tarea | Rama | Estado | Notas |
+|---|---|---|---|
+| Revisar las PR #16 (Inicio del profe) y #18 (toques) | — | ⏳ Pendiente | Como con #13-#15 |
+| Test automático de permisos (RLS) en el CI | `test/pc4-rls` | 💡 Propuesta | Que el CI compruebe con los cinco roles quién ve y cambia cada tabla, para no romper permisos en migraciones futuras |
+| e2e del profe: Inicio, pestaña Seguimiento y darle un toque | `test/pc4-e2e-profe` | ⏳ Pendiente | Cuando se fusione la PR #16 |
 
 ## Sprint 3 · Base completa · cerrado el 2026-10-28
 
