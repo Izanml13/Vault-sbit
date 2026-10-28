@@ -19,6 +19,7 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 | Chat de mensajes por dossier | `feature/pc2-db-chat` | 👀 En revisión (PR #13) | Tabla `mensajes_chat`. Leen y escriben alumno, profe tutor, empresa e instituto; Generalitat solo lee |
 | Clases (grupos) y clase de cada alumno | `feature/pc2-db-clases` | 👀 En revisión (PR #14) | Tabla `grupos` + `perfiles.grupo_id`. Instituto y Generalitat gestionan |
 | Doble validación de horas | `feature/pc2-db-validar-horas` | 👀 En revisión (PR #15) | Empresa valida primero, luego el profe. Día validado = no se edita ni borra. PC 1: el dominio necesita los 4 campos nuevos |
+| Pulir Inicio del profe (web en dos columnas) | `feature/pc2-inicio-profe` | 👀 En revisión (PR #16) | Sale de `feature/pc1-calendario-apple`. Resumen de alumnos con quesito, gráfico y próximas fechas |
 
 Las tres PR añaden un bloque al final de `seed.sql`: si hay conflicto al fusionar, quedarse con todos. Probadas juntas.
 
