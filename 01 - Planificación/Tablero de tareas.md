@@ -59,7 +59,7 @@ Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté e
 | e2e del profe: Inicio, pestaña Seguimiento y darle un toque | `test/pc4-e2e-profe` | ⛔ Bloqueado | Espera a que se fusione la PR #16 |
 | Estudio del SBIT por rol | — | ⏳ Pendiente | Funciones y flujos en `02 - Requisitos`; necesita aporte de Marco |
 
-### 🏢 Empresa · rama `feature/pc3-informes`
+### 🏢 Empresa · rama `feature/pc3-informes` (✅ en `develop`, PR #22)
 
 | Tarea | Zona | Estado | Notas |
 |---|---|---|---|
