@@ -15,4 +15,4 @@
 
 ## Tarea extra del sprint 4 (reparto por rol)
 
-- [x] **`feature/pc4-inicio-instituto`** 👀 En revisión (PR #20): pulsar `panel-instituto.tsx` — cifras del centro arriba, gestión a la izquierda y fechas a la derecha en web ancha; móvil sin cambios. Ver encargo "PC 4 · Instituto" en [[Encargos sprint 4]].
+- [x] **`feature/pc4-inicio-instituto`** ✅ Hecho (PR #20 fusionada, ya en `develop`): pulsar `panel-instituto.tsx` — cifras del centro arriba, gestión a la izquierda y fechas a la derecha en web ancha; móvil sin cambios. Ver encargo "PC 4 · Instituto" en [[Encargos sprint 4]].
