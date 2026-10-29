@@ -19,7 +19,7 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 | Chat de mensajes por dossier | `feature/pc2-db-chat` | 👀 En revisión (PR #13) | Tabla `mensajes_chat`. Leen y escriben alumno, profe tutor, empresa e instituto; Generalitat solo lee. ✅ Aprobada por PC 4 |
 | Clases (grupos) y clase de cada alumno | `feature/pc2-db-clases` | 👀 En revisión (PR #14) | Tabla `grupos` + `perfiles.grupo_id`. Instituto y Generalitat gestionan. ✅ Aprobada por PC 4 |
 | Doble validación de horas | `feature/pc2-db-validar-horas` | 👀 En revisión (PR #15) | Empresa valida primero, luego el profe. Día validado = no se edita ni borra. PC 1: el dominio necesita los 4 campos nuevos. ✅ Aprobada por PC 4 |
-| Profe: Inicio (inbox, horas por validar, sin apuntar con toque) y pestaña Seguimiento | `feature/pc2-inicio-profe` | 👀 En revisión (PR #16) | Según la pizarra del 28/10. Toca `app-tabs` (pestaña Seguimiento para el profe): revisar PC 1. 💬 Comentarios de PC 4: también toca `package.json` (+`react-native-svg`) y arrastra commits de `feature/pc1-calendario-apple`; que decidan PC 1 e Izan |
+| Profe: Inicio (inbox, horas por validar, sin apuntar con toque) y pestaña Seguimiento | `feature/pc2-inicio-profe` | ✅ Hecho (PR #16, en `develop`) | Según la pizarra del 28/10. Toca `app-tabs` (pestaña Seguimiento para el profe): revisar PC 1. 💬 Comentarios de PC 4: también toca `package.json` (+`react-native-svg`) y arrastra commits de `feature/pc1-calendario-apple`; que decidan PC 1 e Izan |
 | Toques de atención del profe al alumno | `feature/pc2-db-toques` | 👀 En revisión (PR #18) | Tabla `toques`, uno al día, se resuelve al apuntar. Falta `ToquePort` (PC 3) y aviso en el Inicio del alumno (PC 1). ✅ Aprobada por PC 4 |
 
 Las cuatro PR de base de datos (#13, #14, #15 y #18) añaden un bloque al final de `seed.sql`: si hay conflicto al fusionar, quedarse con todos. Probadas juntas.
@@ -42,7 +42,7 @@ Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté e
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
 | Revisar y fusionar las PR de base de datos #13, #14, #15 y #18 | — | 🔥 Urgente | Desbloquean a PC 3. Conflicto en `seed.sql`: quedarse con todos los bloques |
-| Revisar y fusionar el Inicio del profe (PR #16) | — | ⏳ Pendiente | Sale de `feature/pc1-calendario-apple`. Toca `app-tabs.tsx` y `app-tabs.web.tsx`: la pestaña del profe se llama Seguimiento. 💬 PC 4 comentó: también `package.json` (+`react-native-svg`) y commits de esa rama sin fusionar dentro del diff |
+| Revisar y fusionar el Inicio del profe (PR #16) | — | ✅ Hecho (fusionada por Bouba) | Sale de `feature/pc1-calendario-apple`. Toca `app-tabs.tsx` y `app-tabs.web.tsx`: la pestaña del profe se llama Seguimiento. 💬 PC 4 comentó: también `package.json` (+`react-native-svg`) y commits de esa rama sin fusionar dentro del diff |
 | Aviso de toque en el Inicio del alumno | `feature/pc1-aviso-toque` | ⛔ Bloqueado | Espera a `feature/pc3-toques`. Arriba de `panel-alumno.tsx`: "Tu tutor te ha dado un toque: llevas N días sin apuntar" + botón "Apuntar ahora" (`/registro`); al verlo, `marcarVisto` |
 | Registrar en `container.ts` los backends nuevos de PC 3 | — | ⏳ Pendiente | Profes del instituto, informes, y después chat, clases, validar horas y toques |
 | Fusionar PR #17 (test de pantallas, PC 4) | `test/pc4-pantallas` | ⏳ Pendiente | 7 tests sobre las pantallas de develop; 126/126 en local |
