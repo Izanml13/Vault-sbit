@@ -8,6 +8,7 @@ Decisiones del equipo (pizarra del 28 oct 2026). Relacionado: [[Análisis SBIT]]
 - **Primer login:** se obliga a cambiar la contraseña, para que el tutor no conozca la definitiva.
 - **¿Has olvidado tu contraseña?:** está en el login; el enlace llega al email del alumno. No hay cambio de contraseña en el perfil.
 - **Identidad bloqueada:** el alumno no puede cambiar su nombre (ni DNI, dirección o NUSS). Lo gestionan su tutor y su instituto, así nadie usa la cuenta de otro sin pasar por el tutor.
+- **Correo de acceso:** el tutor de empresa es una cuenta propia, fuera del centro, y cambia su correo desde Perfil (con confirmación por correo). Al alumno, al profe y al instituto el correo se lo gestiona su centro.
 
 ## Datos personales
 

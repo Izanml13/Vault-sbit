@@ -18,4 +18,4 @@
 ## Estado actual
 - **Fase:** 3 — Desarrollo (sprint 4: front y comunicación)
 - **Stack:** React Native + Expo · Supabase · Vercel → [[Arquitectura y stack]]
-- **Última actualización:** 2026-10-28
+- **Última actualización:** 2026-10-29

@@ -59,6 +59,22 @@ Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté e
 | e2e del profe: Inicio, pestaña Seguimiento y darle un toque | `test/pc4-e2e-profe` | ⛔ Bloqueado | Espera a que se fusione la PR #16 |
 | Estudio del SBIT por rol | — | ⏳ Pendiente | Funciones y flujos en `02 - Requisitos`; necesita aporte de Marco |
 
+### 🏢 Empresa · rama `feature/pc3-informes`
+
+| Tarea | Zona | Estado | Notas |
+|---|---|---|---|
+| Inicio de la empresa: ritmo por calendario, avisos, informes por validar, últimas valoraciones, fechas y mensajes | `ui/vistas/panel-empresa.tsx`, `ui/utils/ritmo.ts` | ✅ Hecho | La marca de la barra son las horas que tocan hoy; avisos de sin apuntar, por debajo del ritmo y fin de prácticas |
+| Pestaña Validaciones (antes Calendario) para la empresa | `app/validaciones.tsx`, `ui/vistas/validaciones.tsx`, `app-tabs` | ✅ Hecho | Pendientes arriba, validadas abajo en tono flojo; Calendario se mantiene para los demás roles |
+| Chat de la empresa (un hilo por alumno y por profe) | `ui/vistas/chat-empresa.tsx`, `ui/utils/chat.ts`, `ui/estado/chat-empresa.ts` | ✅ Hecho (sin backend) | Mensajes en memoria; espera la tabla de la PR #13 y el módulo de PC 3 |
+| Correo editable por el tutor de empresa | `core/domain/perfil.ts`, `core/application/perfil.ts`, `ports/perfil-port.ts`, adaptadores, `ui/vistas/perfil.tsx` | ✅ Hecho (falta migración) | `auth.updateUser` en Supabase; `perfiles.email` y `proteger_perfil` necesitan migración de PC 2 |
+| La valoración final del profe cierra los pendientes de la empresa | `ui/utils/validaciones.ts` | ✅ Hecho | Antes la empresa seguía viendo meses que ya no podía validar |
+| Revisar pestañas, `BarraProgreso` y Validaciones | PC 1 | ⏳ Pendiente | Zona de PC 1: `app-tabs.tsx`, `app-tabs.web.tsx`, `ui/components/barra-progreso.tsx` |
+| Migración del correo (`perfiles.email` + `proteger_perfil`) | PC 2 | ⏳ Pendiente | Trigger en `auth.users` y ajustar el trigger de perfiles, o retirar la columna |
+| Módulo de chat real y registro de informes en `container.ts` | PC 3 / PC 1 | ⛔ Bloqueado | Chat espera PR #13; informes esperan a que PC 1 los registre |
+| e2e del flujo empresa → profe y del cambio de correo | PC 4 | ⏳ Pendiente | Arreglar también `login` y `registro-dia` (botón "Registrar hoy") |
+
+Ver [[2026-10-29]].
+
 ## Sprint 3 · Base completa · cerrado el 2026-10-28
 
 **Objetivo:** que la base esté entera (dossiers, tareas, incidencias, generalitat) para dedicarnos después solo a mejorar el front.
