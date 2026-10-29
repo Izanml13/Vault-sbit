@@ -12,3 +12,7 @@
 - [x] Revisar cada PR de PC 2 y PC 3 en cuanto se abra (CI, carpetas, descripción) — de momento: ✅ #13-15 y #18 aprobadas, 💬 #16 con comentarios; pendiente revisar PR de PC 3 (profes e informes)
 - [ ] **`test/pc4-e2e`**: e2e de footer, chat, validar horas, clases y profesores del instituto (cuando estén en `develop`)
 - [x] Mantener al día el [Tablero de tareas](../Tablero%20de%20tareas.md)
+
+## Tarea extra del sprint 4 (reparto por rol)
+
+- [ ] **`feature/pc4-inicio-instituto`** 🔄 En curso: pulsar `panel-instituto.tsx` — cifras del centro arriba, gestión a la izquierda y fechas a la derecha en web ancha; móvil sin cambios. Ver encargo "PC 4 · Instituto" en [[Encargos sprint 4]].

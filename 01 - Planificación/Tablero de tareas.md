@@ -51,6 +51,7 @@ Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté e
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
+| Pulsar el panel del instituto | `feature/pc4-inicio-instituto` | 🔄 En curso | Cifras arriba, dos columnas en web ancha, mismos colores y componentes. Encargo "PC 4 · Instituto" de [[Encargos sprint 4]] |
 | Revisar las PR #16 (Inicio del profe) y #18 (toques) | — | ✅ Hecho | #18 aprobada; #16 con comentarios (zona de PC 1). Como con #13-#15 |
 | Rehacer el test de pantallas | `test/pc4-pantallas` | 👀 En revisión (PR #17) | 7 tests: registro-dia no pisa días, recarga del panel al volver, dossiers por nombre, retry, `useDatos` descarta respuestas viejas. 126/126 en local |
 | Test automático de permisos (RLS) en el CI | `test/pc4-rls` | 💡 Propuesta | Que el CI compruebe con los cinco roles quién ve y cambia cada tabla, para no romper permisos en migraciones futuras |
