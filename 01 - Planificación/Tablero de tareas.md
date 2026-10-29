@@ -20,6 +20,7 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 | Clases (grupos) y clase de cada alumno | `feature/pc2-db-clases` | 👀 En revisión (PR #14) | Tabla `grupos` + `perfiles.grupo_id`. Instituto y Generalitat gestionan. ✅ Aprobada por PC 4 |
 | Doble validación de horas | `feature/pc2-db-validar-horas` | 👀 En revisión (PR #15) | Empresa valida primero, luego el profe. Día validado = no se edita ni borra. PC 1: el dominio necesita los 4 campos nuevos. ✅ Aprobada por PC 4 |
 | Profe: Inicio (inbox, horas por validar, sin apuntar con toque) y pestaña Seguimiento | `feature/pc2-inicio-profe` | ✅ Hecho (PR #16, en `develop`) | Según la pizarra del 28/10. Toca `app-tabs` (pestaña Seguimiento para el profe): revisar PC 1. 💬 Comentarios de PC 4: también toca `package.json` (+`react-native-svg`) y arrastra commits de `feature/pc1-calendario-apple`; que decidan PC 1 e Izan |
+| Profe con el estilo del alumno: Inicio y Seguimiento (lista compacta) | `feature/pc2-estilo-profe`, `feature/pc2-estilo-seguimiento` | ✅ Hecho (PR #19 y #21, en `develop`) | |
 | Toques de atención del profe al alumno | `feature/pc2-db-toques` | 👀 En revisión (PR #18) | Tabla `toques`, uno al día, se resuelve al apuntar. Falta `ToquePort` (PC 3) y aviso en el Inicio del alumno (PC 1). ✅ Aprobada por PC 4 |
 
 Las cuatro PR de base de datos (#13, #14, #15 y #18) añaden un bloque al final de `seed.sql`: si hay conflicto al fusionar, quedarse con todos. Probadas juntas.
