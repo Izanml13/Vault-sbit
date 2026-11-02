@@ -8,9 +8,24 @@
 
 ## Tareas (en orden, marca `[x]` al terminar)
 
-- [x] **`feature/pc2-db-chat`** (PR #13): mensajes de chat por dossier. RLS: leen y escriben alumno, profe tutor, tutor de empresa e instituto del centro; la Generalitat solo lee. Datos en el seed.
-- [x] **`feature/pc2-db-clases`** (PR #14): tabla `grupos` (ciclo, curso, letra, centro) y `grupo_id` en los alumnos. RLS: instituto y Generalitat gestionan; profe y alumno leen.
-- [x] **`feature/pc2-db-validar-horas`** (PR #15): doble validación (primero la empresa, luego el profe). Un registro validado no se edita ni se borra.
+- [x] ~~**`feature/pc2-db-chat`** (PR #13): mensajes de chat por dossier.~~ **Cerrada el 02/11**: la cubre el chat directo de Izan (`chat_mensajes`). Se reabre si hace falta chat de grupo.
+- [x] **`feature/pc2-db-clases`** (PR #14, en `develop`): tabla `grupos` (ciclo, curso, letra, centro) y `grupo_id` en los alumnos. RLS: instituto y Generalitat gestionan; profe y alumno leen. Migración `20261102140000_grupos_clase.sql`.
+- [x] **Doble validación** · ~~PR #15 por día (cerrada)~~ → **`feature/pc2-db-validar-mes`** (PR #26, en `develop`): la empresa valida el mes con la valoración mensual y el profe tutor lo confirma (`confirmada_por`, `confirmada_en`). Un mes confirmado no lo toca la empresa. Migración `20261102090000_confirmar_mes.sql`.
+
+### Añadidas durante el sprint
+
+- [x] **`feature/pc2-db-toques`** (PR #18, en `develop`): toques de atención del profe al alumno, uno al día, se resuelven al apuntar. `20261102150000_toques.sql`.
+- [x] **`feature/pc2-db-correo`** (PR #27, en `develop`): `perfiles.email` sigue al correo de la cuenta. `20261102160000_sincronizar_email.sql`.
+- [x] **`fix/pc2-db-seguridad`** (PR #28, en `develop`): funciones internas fuera del alcance de `anon` y 4 índices de claves foráneas. `20261102170000_seguridad_y_indices.sql`.
+- [x] **`fix/pc2-fecha-grupos`** (PR #29, en `develop`): dos migraciones tenían la misma fecha y el CI de `develop` fallaba.
+
+### Pendiente de Bouba como propietario del repo (no se puede hacer desde Claude)
+
+- [ ] GitHub → Settings → General → Default branch: **`develop`**.
+- [ ] Settings → Branches: proteger `main` y `develop` (PR y CI obligatorios).
+- [ ] Settings → General: activar **Automatically delete head branches** (hay ramas fusionadas acumuladas).
+
+**Regla para todos:** una migración nueva siempre con **fecha posterior a la última de `develop`**. Si coincide o es anterior, `supabase db push` no la aplica en la nube o choca en `schema_migrations`.
 
 ## Cómo comprobar cada una
 
