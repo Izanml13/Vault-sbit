@@ -24,6 +24,7 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 | Toques de atención del profe al alumno | `feature/pc2-db-toques` | 👀 En revisión (PR #18) | Tabla `toques`, uno al día, se resuelve al apuntar. Falta `ToquePort` (PC 3) y aviso en el Inicio del alumno (PC 1). ✅ Aprobada por PC 4 |
 
 | Correo del tutor de empresa: `perfiles.email` sigue a `auth.users.email` | `feature/pc2-db-correo` | 👀 En revisión (PR #27, CI ✅) | Trigger en `auth.users` + `proteger_perfil` solo deja poner el correo de la cuenta. La app no cambia |
+| Seguridad e índices del asesor de Supabase | `fix/pc2-db-seguridad` | 👀 En revisión (PR #28, CI ✅) | `comparten_dossier`, `gestiona_alumno` y los triggers de incidencias ya no se llaman sin sesión; 4 índices de claves foráneas |
 
 Las PR de base de datos abiertas (#13, #14, #18, #26 y #27) siguen y sin conflictos con `develop` a 2026-11-02; añaden un bloque al final de `seed.sql`: si hay conflicto al fusionar, quedarse con todos. Probadas juntas. #14 (clases) y #18 (toques) no chocan con nada de lo nuevo.
 
@@ -37,6 +38,7 @@ Las PR de base de datos abiertas (#13, #14, #18, #26 y #27) siguen y sin conflic
 | Clases (grupos) y "mis clases" del profe | `feature/pc3-clases` | ⛔ Bloqueado | Espera a `feature/pc2-db-clases` (PR #14) |
 | Doble validación de horas | `feature/pc3-validar-horas` | ⛔ Bloqueado | Espera a `feature/pc2-db-validar-mes` (PR #26, sustituye a la #15): `ValoracionMensual` con `confirmadaPor`/`confirmadaEn` y `confirmarMes`/`quitarConfirmacion`. El Inicio del profe (PR #16) necesita listar los días ya validados por la empresa y pendientes del profe, y validar varios de una vez |
 | Toques de atención | `feature/pc3-toques` | ⛔ Bloqueado | Espera a `feature/pc2-db-toques` (PR #18). `ToquePort`: `dar(dossierId, diasSinApuntar)`, `pendientesDelAlumno()`, `ultimosPorDossier(ids)` y `marcarVisto(id)`; adaptadores memoria y Supabase. Detalle en la PR #18 |
+| Conectar el chat de la empresa al chat real | `feature/pc3-chat-empresa` | ⏳ Pendiente (revisión 02/11) | `chat-empresa.tsx` guarda los mensajes en memoria (`ui/estado/chat-empresa.ts`). Usar el `ChatPort` de `chat_directo` que ya está en `main` |
 
 Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté en `develop`: el dominio sale de la tabla, no al revés. El progreso por clase de los informes llegará con los grupos; hasta entonces el profe ve a sus alumnos.
 
@@ -48,6 +50,10 @@ Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté e
 | Revisar y fusionar el Inicio del profe (PR #16) | — | ✅ Hecho (fusionada por Bouba) | Sale de `feature/pc1-calendario-apple`. Toca `app-tabs.tsx` y `app-tabs.web.tsx`: la pestaña del profe se llama Seguimiento. 💬 PC 4 comentó: también `package.json` (+`react-native-svg`) y commits de esa rama sin fusionar dentro del diff |
 | Aviso de toque en el Inicio del alumno | `feature/pc1-aviso-toque` | ⛔ Bloqueado | Espera a `feature/pc3-toques`. Arriba de `panel-alumno.tsx`: "Tu tutor te ha dado un toque: llevas N días sin apuntar" + botón "Apuntar ahora" (`/registro`); al verlo, `marcarVisto` |
 | Primera release `develop → main` | — | ✅ Hecho (PR #23, 29/10) | La nube ya tiene `datos_personales`, `identidad_alumno`, `chat_directo` y `chat_realtime`. Desde entonces `develop` suma `historial_dossier`: falta otra release |
+| 🔥 Segunda release `develop → main` | — | ⏳ Pendiente (revisión 02/11) | `develop` va 20 commits por delante: la nube no tiene `historial_dossier`. Mejor tras fusionar las PR de base de datos (#14, #18, #26, #27, #28) para subirlas juntas |
+| Repasar y fusionar las 9 PR abiertas | — | ⏳ Pendiente (revisión 02/11) | Base de datos: #14, #18, #26, #27, #28 (y decidir #13). PC 4: #12, #17, #24. PC 3: #25 |
+| Decidir con PC 2 qué hacer con la #13 (chat por dossier) | — | ⏳ Pendiente | Solapa con `chat_directo`: cerrarla o dejarla como chat de grupo del dossier |
+| Activar la protección de contraseñas filtradas en Supabase | Panel de Supabase | ⏳ Pendiente (revisión 02/11) | *Authentication → Passwords → Leaked password protection*. No es código: lo hace quien administra el proyecto |
 | Registrar en `container.ts` los backends nuevos de PC 3 | — | 🔄 En curso | `chat` e `informes` hechos (2026-10-29); faltan profes del instituto, clases, validar horas y toques |
 | Fusionar PR #17 (test de pantallas, PC 4) | `test/pc4-pantallas` | ⏳ Pendiente | 7 tests sobre las pantallas de develop; 126/126 en local |
 
@@ -59,6 +65,7 @@ Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté e
 | Revisar las PR #16 (Inicio del profe) y #18 (toques) | — | ✅ Hecho | #18 aprobada; #16 con comentarios (zona de PC 1). Como con #13-#15 |
 | Rehacer el test de pantallas | `test/pc4-pantallas` | 👀 En revisión (PR #17) | 7 tests: registro-dia no pisa días, recarga del panel al volver, dossiers por nombre, retry, `useDatos` descarta respuestas viejas. 126/126 en local |
 | Test automático de permisos (RLS) en el CI | `test/pc4-rls` | 💡 Propuesta | Que el CI compruebe con los cinco roles quién ve y cambia cada tabla, para no romper permisos en migraciones futuras |
+| Revisar las PR #26, #27 y #28 de base de datos | — | ⏳ Pendiente (revisión 02/11) | Como con #13-#18 |
 | e2e del profe: Inicio, pestaña Seguimiento y darle un toque | `test/pc4-e2e-profe` | ⛔ Bloqueado | Espera a que se fusione la PR #16 |
 | Estudio del SBIT por rol | — | ⏳ Pendiente | Funciones y flujos en `02 - Requisitos`; necesita aporte de Marco |
 
