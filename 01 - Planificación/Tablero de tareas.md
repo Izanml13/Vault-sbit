@@ -16,14 +16,16 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| Chat de mensajes por dossier | `feature/pc2-db-chat` | 👀 En revisión (PR #13) | Tabla `mensajes_chat`. Leen y escriben alumno, profe tutor, empresa e instituto; Generalitat solo lee. ✅ Aprobada por PC 4 |
+| Chat de mensajes por dossier | `feature/pc2-db-chat` | 👀 En revisión (PR #13) | Tabla `mensajes_chat`. Leen y escriben alumno, profe tutor, empresa e instituto; Generalitat solo lee. ✅ Aprobada por PC 4. ⚠️ **Solapa con `chat_directo`** (Izan, ya en `main`): chat de persona a persona. Decidir si se cierra la #13 o si queda como chat de grupo del dossier |
 | Clases (grupos) y clase de cada alumno | `feature/pc2-db-clases` | 👀 En revisión (PR #14) | Tabla `grupos` + `perfiles.grupo_id`. Instituto y Generalitat gestionan. ✅ Aprobada por PC 4 |
-| Doble validación de horas | `feature/pc2-db-validar-horas` | 👀 En revisión (PR #15) | Empresa valida primero, luego el profe. Día validado = no se edita ni borra. PC 1: el dominio necesita los 4 campos nuevos. ✅ Aprobada por PC 4 |
+| Doble validación de horas | `feature/pc2-db-validar-horas` | 👀 En revisión (PR #15) | Empresa valida primero, luego el profe. Día validado = no se edita ni borra. PC 1: el dominio necesita los 4 campos nuevos. ✅ Aprobada por PC 4. ⚠️ **Revisar antes de fusionar:** valida **por día**, pero [[Cuentas, datos y validación]] dice que la empresa valida **el mes**, y la pestaña Validaciones (PR #22) ya trabaja por mes. Probablemente hay que rehacerla por mes |
 | Profe: Inicio (inbox, horas por validar, sin apuntar con toque) y pestaña Seguimiento | `feature/pc2-inicio-profe` | ✅ Hecho (PR #16, en `develop`) | Según la pizarra del 28/10. Toca `app-tabs` (pestaña Seguimiento para el profe): revisar PC 1. 💬 Comentarios de PC 4: también toca `package.json` (+`react-native-svg`) y arrastra commits de `feature/pc1-calendario-apple`; que decidan PC 1 e Izan |
 | Profe con el estilo del alumno: Inicio y Seguimiento (lista compacta) | `feature/pc2-estilo-profe`, `feature/pc2-estilo-seguimiento` | ✅ Hecho (PR #19 y #21, en `develop`) | |
 | Toques de atención del profe al alumno | `feature/pc2-db-toques` | 👀 En revisión (PR #18) | Tabla `toques`, uno al día, se resuelve al apuntar. Falta `ToquePort` (PC 3) y aviso en el Inicio del alumno (PC 1). ✅ Aprobada por PC 4 |
 
-Las cuatro PR de base de datos (#13, #14, #15 y #18) añaden un bloque al final de `seed.sql`: si hay conflicto al fusionar, quedarse con todos. Probadas juntas.
+| Correo del tutor de empresa: copiar `auth.users.email` a `perfiles.email` | `feature/pc2-db-correo` | ⏳ Pendiente | Pedido en [[2026-10-29]]: trigger `after update of email on auth.users` y ajustar `proteger_perfil` (o retirar `perfiles.email`) |
+
+Las cuatro PR de base de datos (#13, #14, #15 y #18) siguen abiertas y sin conflictos con `develop` a 2026-11-02; añaden un bloque al final de `seed.sql`: si hay conflicto al fusionar, quedarse con todos. Probadas juntas. #14 (clases) y #18 (toques) no chocan con nada de lo nuevo.
 
 ### ⚙️ PC 3 · Backend · OpenCode
 
@@ -45,6 +47,7 @@ Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté e
 | Revisar y fusionar las PR de base de datos #13, #14, #15 y #18 | — | 🔥 Urgente | Desbloquean a PC 3. Conflicto en `seed.sql`: quedarse con todos los bloques |
 | Revisar y fusionar el Inicio del profe (PR #16) | — | ✅ Hecho (fusionada por Bouba) | Sale de `feature/pc1-calendario-apple`. Toca `app-tabs.tsx` y `app-tabs.web.tsx`: la pestaña del profe se llama Seguimiento. 💬 PC 4 comentó: también `package.json` (+`react-native-svg`) y commits de esa rama sin fusionar dentro del diff |
 | Aviso de toque en el Inicio del alumno | `feature/pc1-aviso-toque` | ⛔ Bloqueado | Espera a `feature/pc3-toques`. Arriba de `panel-alumno.tsx`: "Tu tutor te ha dado un toque: llevas N días sin apuntar" + botón "Apuntar ahora" (`/registro`); al verlo, `marcarVisto` |
+| Primera release `develop → main` | — | ✅ Hecho (PR #23, 29/10) | La nube ya tiene `datos_personales`, `identidad_alumno`, `chat_directo` y `chat_realtime`. Desde entonces `develop` suma `historial_dossier`: falta otra release |
 | Registrar en `container.ts` los backends nuevos de PC 3 | — | ⏳ Pendiente | Profes del instituto, informes, y después chat, clases, validar horas y toques |
 | Fusionar PR #17 (test de pantallas, PC 4) | `test/pc4-pantallas` | ⏳ Pendiente | 7 tests sobre las pantallas de develop; 126/126 en local |
 
