@@ -68,6 +68,6 @@ Ejemplos: `feat(app): pantalla de tareas` · `fix(memory): ids de los datos demo
 
 ## Pendiente (lo tiene que hacer Bouba, propietario del repo)
 
-- [ ] GitHub → Settings → General → Default branch: **`develop`**, para que las PR vayan ahí por defecto.
-- [ ] Settings → Branches: proteger `main` y `develop` (exigir PR y CI en verde, sin push directo).
-- [ ] Settings → General: activar **Automatically delete head branches**.
+- [x] GitHub → Settings → General → Default branch: **`develop`**, para que las PR vayan ahí por defecto. (02/11)
+- [ ] Settings → Branches: proteger `main` y `develop` (exigir PR y CI en verde, sin push directo). Aplazado al martes 03/11.
+- [x] Settings → General: activar **Automatically delete head branches**. (02/11)

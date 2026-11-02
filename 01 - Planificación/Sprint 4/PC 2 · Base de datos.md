@@ -21,9 +21,9 @@
 
 ### Pendiente de Bouba como propietario del repo (no se puede hacer desde Claude)
 
-- [ ] GitHub → Settings → General → Default branch: **`develop`**.
-- [ ] Settings → Branches: proteger `main` y `develop` (PR y CI obligatorios).
-- [ ] Settings → General: activar **Automatically delete head branches** (hay ramas fusionadas acumuladas).
+- [x] GitHub → Settings → General → Default branch: **`develop`** (02/11).
+- [ ] Settings → Branches: proteger `main` y `develop` (PR y CI obligatorios). **Aplazado al martes 03/11.**
+- [x] Settings → General: activar **Automatically delete head branches** (02/11).
 
 **Regla para todos:** una migración nueva siempre con **fecha posterior a la última de `develop`**. Si coincide o es anterior, `supabase db push` no la aplica en la nube o choca en `schema_migrations`.
 
