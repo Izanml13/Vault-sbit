@@ -14,7 +14,8 @@ Se pueden empezar ya (no dependen de PC 2):
 
 Estado de las dependencias a 2 de noviembre (ver [[2026-11-02]]):
 - [ ] **`feature/pc3-chat`**: listar y enviar mensajes por dossier · *espera a `feature/pc2-db-chat`*
-- [ ] **`feature/pc3-clases`**: grupos, asignar alumnos, "mis clases" del profe · *disponible desde develop, PR #14 integrada*
+- [x] **`feature/pc3-clases`**: grupos, asignar alumnos, "mis clases" del profe · *rama subida el 2026-11-02; falta la pantalla (PC 1) y el registro en `container.ts`*
+- [x] **`feature/pc3-toques`**: toques de atención del profe al alumno · *rama subida el 2026-11-02; falta el aviso en el Inicio del alumno (PC 1) y el registro en `container.ts`*
 - [x] **`feature/pc3-validar-horas`**: validar como empresa, como profe y pendientes · *casos de uso y adaptadores en la rama `feature/pc3-validar-horas` (2026-11-02); falta la pantalla, de PC 1*
 
 Cuando se fusione cada una, avisa a PC 1 para que haga la pantalla.
