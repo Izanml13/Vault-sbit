@@ -16,15 +16,15 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| Chat de mensajes por dossier | `feature/pc2-db-chat` | 👀 En revisión (PR #13) | Tabla `mensajes_chat`. Leen y escriben alumno, profe tutor, empresa e instituto; Generalitat solo lee. ✅ Aprobada por PC 4. ⚠️ **Solapa con `chat_directo`** (Izan, ya en `main`): chat de persona a persona. Decidir si se cierra la #13 o si queda como chat de grupo del dossier. El chat de persona a persona ya tiene backend en `develop`: ver [[2026-11-02]] |
+| Chat de mensajes por dossier | `feature/pc2-db-chat` | ❌ Cerrada (PR #13, 02/11) | Tabla `mensajes_chat`. Leen y escriben alumno, profe tutor, empresa e instituto; Generalitat solo lee. ✅ Aprobada por PC 4. ⚠️ **Solapa con `chat_directo`** (Izan, ya en `main`): chat de persona a persona. Decidir si se cierra la #13 o si queda como chat de grupo del dossier. El chat de persona a persona ya tiene backend en `develop`: ver [[2026-11-02]] |
 | Clases (grupos) y clase de cada alumno | `feature/pc2-db-clases` | ✅ Integrada en develop (PR #14) | Tabla `grupos` + `perfiles.grupo_id`. Instituto y Generalitat gestionan. ✅ Aprobada por PC 4 |
 | Doble validación de horas: el profe confirma el mes | `feature/pc2-db-validar-mes` | ✅ Integrada en develop (PR #26) | **Sustituye a la #15 (cerrada)**: la validación es mensual. La empresa ya valida el mes con la valoración mensual; esto añade `confirmada_por`/`confirmada_en` en `valoraciones_mensuales`. Solo el profe tutor confirma; un mes confirmado no lo toca la empresa |
 | Profe: Inicio (inbox, horas por validar, sin apuntar con toque) y pestaña Seguimiento | `feature/pc2-inicio-profe` | ✅ Hecho (PR #16, en `develop`) | Según la pizarra del 28/10. Toca `app-tabs` (pestaña Seguimiento para el profe): revisar PC 1. 💬 Comentarios de PC 4: también toca `package.json` (+`react-native-svg`) y arrastra commits de `feature/pc1-calendario-apple`; que decidan PC 1 e Izan |
 | Profe con el estilo del alumno: Inicio y Seguimiento (lista compacta) | `feature/pc2-estilo-profe`, `feature/pc2-estilo-seguimiento` | ✅ Hecho (PR #19 y #21, en `develop`) | |
 | Toques de atención del profe al alumno | `feature/pc2-db-toques` | ✅ En `develop` (PR #18) | Tabla `toques`, uno al día, se resuelve al apuntar. Falta `ToquePort` (PC 3) y aviso en el Inicio del alumno (PC 1). ✅ Aprobada por PC 4 |
 
-| Correo del tutor de empresa: `perfiles.email` sigue a `auth.users.email` | `feature/pc2-db-correo` | 👀 En revisión (PR #27, CI ✅) | Trigger en `auth.users` + `proteger_perfil` solo deja poner el correo de la cuenta. La app no cambia |
-| Seguridad e índices del asesor de Supabase | `fix/pc2-db-seguridad` | 👀 En revisión (PR #28, CI ✅) | `comparten_dossier`, `gestiona_alumno` y los triggers de incidencias ya no se llaman sin sesión; 4 índices de claves foráneas |
+| Correo del tutor de empresa: `perfiles.email` sigue a `auth.users.email` | `feature/pc2-db-correo` | ✅ En `develop` (PR #27) | Trigger en `auth.users` + `proteger_perfil` solo deja poner el correo de la cuenta. La app no cambia |
+| Seguridad e índices del asesor de Supabase | `fix/pc2-db-seguridad` | ✅ En `develop` (PR #28) | `comparten_dossier`, `gestiona_alumno` y los triggers de incidencias ya no se llaman sin sesión; 4 índices de claves foráneas |
 
 Base de datos pendiente de revisión: #18, #27 y #28. La #13 sigue pendiente de decisión sobre el chat de grupo.
 
@@ -52,7 +52,7 @@ PC 3 puede empezar clases y confirmación mensual desde el develop actual. Toque
 | Primera release `develop → main` | — | ✅ Hecho (PR #23, 29/10) | La nube ya tiene `datos_personales`, `identidad_alumno`, `chat_directo` y `chat_realtime`. Desde entonces `develop` suma `historial_dossier`: falta otra release |
 | Segunda release develop → main | — | Pendiente | 29 commits de develop no están en main al comprobar b6c320f. Ver [[2026-11-02]] |
 | Revisar las PR restantes | — | En curso | Ver [PR abiertas en GitHub](https://github.com/bose069-web/SBIT_BIRM/pulls). La #25 corresponde a la auditoría UI de PC 3 |
-| Decidir con PC 2 qué hacer con la #13 (chat por dossier) | — | ⏳ Pendiente | Solapa con `chat_directo`: cerrarla o dejarla como chat de grupo del dossier |
+| Decidir con PC 2 qué hacer con la #13 (chat por dossier) | — | ✅ Cerrada por PC 2 (02/11): la cubre `chat_directo`; se reabre si hace falta chat de grupo | Solapa con `chat_directo`: cerrarla o dejarla como chat de grupo del dossier |
 | Activar la protección de contraseñas filtradas en Supabase | Panel de Supabase | ⏳ Pendiente (revisión 02/11) | *Authentication → Passwords → Leaked password protection*. No es código: lo hace quien administra el proyecto |
 | Registrar en `container.ts` los backends nuevos de PC 3 | — | 🔄 En curso | `chat` e `informes` hechos (2026-10-29); profes del instituto amplía `centros`. Coordinar clases, confirmación mensual y toques con PC 3 |
 | Fusionar PR #17 (test de pantallas, PC 4) | `test/pc4-pantallas` | ⏳ Pendiente | 7 tests sobre las pantallas de develop; 126/126 en local |
