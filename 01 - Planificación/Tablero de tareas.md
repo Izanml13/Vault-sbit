@@ -16,7 +16,7 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
-| Chat de mensajes por dossier | `feature/pc2-db-chat` | 👀 En revisión (PR #13) | Tabla `mensajes_chat`. Leen y escriben alumno, profe tutor, empresa e instituto; Generalitat solo lee. ✅ Aprobada por PC 4. ⚠️ **Solapa con `chat_directo`** (Izan, ya en `main`): chat de persona a persona. Decidir si se cierra la #13 o si queda como chat de grupo del dossier |
+| Chat de mensajes por dossier | `feature/pc2-db-chat` | 👀 En revisión (PR #13) | Tabla `mensajes_chat`. Leen y escriben alumno, profe tutor, empresa e instituto; Generalitat solo lee. ✅ Aprobada por PC 4. ⚠️ **Solapa con `chat_directo`** (Izan, ya en `main`): chat de persona a persona. Decidir si se cierra la #13 o si queda como chat de grupo del dossier. El chat de persona a persona ya tiene backend en `develop`: ver [[2026-11-02]] |
 | Clases (grupos) y clase de cada alumno | `feature/pc2-db-clases` | 👀 En revisión (PR #14) | Tabla `grupos` + `perfiles.grupo_id`. Instituto y Generalitat gestionan. ✅ Aprobada por PC 4 |
 | Doble validación de horas | `feature/pc2-db-validar-horas` | 👀 En revisión (PR #15) | Empresa valida primero, luego el profe. Día validado = no se edita ni borra. PC 1: el dominio necesita los 4 campos nuevos. ✅ Aprobada por PC 4. ⚠️ **Revisar antes de fusionar:** valida **por día**, pero [[Cuentas, datos y validación]] dice que la empresa valida **el mes**, y la pestaña Validaciones (PR #22) ya trabaja por mes. Probablemente hay que rehacerla por mes |
 | Profe: Inicio (inbox, horas por validar, sin apuntar con toque) y pestaña Seguimiento | `feature/pc2-inicio-profe` | ✅ Hecho (PR #16, en `develop`) | Según la pizarra del 28/10. Toca `app-tabs` (pestaña Seguimiento para el profe): revisar PC 1. 💬 Comentarios de PC 4: también toca `package.json` (+`react-native-svg`) y arrastra commits de `feature/pc1-calendario-apple`; que decidan PC 1 e Izan |
@@ -32,8 +32,8 @@ Las cuatro PR de base de datos (#13, #14, #15 y #18) siguen abiertas y sin confl
 | Tarea | Rama | Estado | Notas |
 |---|---|---|---|
 | Profesores del centro con sus alumnos y reasignar en bloque | `feature/pc3-profes-instituto` | 👀 En revisión | `obtenerRepartoProfes` (cada profe con sus alumnos y los que no tienen tutor) y `reasignarAlumnos`; puerto con `asignarProfeEnBloque`, una sola consulta en Supabase. 12 tests. Para PC 1: no está en `container.ts` |
-| Informes por rol | `feature/pc3-informes` | 👀 En revisión | Solo lectura: alumno (horas totales y por mes), profe y empresa (progreso de sus alumnos), instituto (por profe y por empresa), Generalitat (por centro). 16 tests. Para PC 1: no está en `container.ts` |
-| Chat por dossier | `feature/pc3-chat` | ⛔ Bloqueado | Espera a `feature/pc2-db-chat` (PR #13) |
+| Informes por rol | `feature/pc3-informes` | ✅ En `develop` | Solo lectura: alumno (horas totales y por mes), profe y empresa (progreso de sus alumnos), instituto (por profe y por empresa), Generalitat (por centro). 16 tests. ✅ PC 1 lo registró en `container.ts` el 2026-10-29 (`informes`) |
+| Chat por dossier | `feature/pc3-chat` | ⛔ Bloqueado | Espera a `feature/pc2-db-chat` (PR #13). ⚠️ El chat directo de persona a persona ya está en `develop` con su propio módulo: ver [[2026-11-02]] |
 | Clases (grupos) y "mis clases" del profe | `feature/pc3-clases` | ⛔ Bloqueado | Espera a `feature/pc2-db-clases` (PR #14) |
 | Doble validación de horas | `feature/pc3-validar-horas` | ⛔ Bloqueado | Espera a `feature/pc2-db-validar-horas` (PR #15). El Inicio del profe (PR #16) necesita listar los días ya validados por la empresa y pendientes del profe, y validar varios de una vez |
 | Toques de atención | `feature/pc3-toques` | ⛔ Bloqueado | Espera a `feature/pc2-db-toques` (PR #18). `ToquePort`: `dar(dossierId, diasSinApuntar)`, `pendientesDelAlumno()`, `ultimosPorDossier(ids)` y `marcarVisto(id)`; adaptadores memoria y Supabase. Detalle en la PR #18 |
@@ -48,7 +48,7 @@ Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté e
 | Revisar y fusionar el Inicio del profe (PR #16) | — | ✅ Hecho (fusionada por Bouba) | Sale de `feature/pc1-calendario-apple`. Toca `app-tabs.tsx` y `app-tabs.web.tsx`: la pestaña del profe se llama Seguimiento. 💬 PC 4 comentó: también `package.json` (+`react-native-svg`) y commits de esa rama sin fusionar dentro del diff |
 | Aviso de toque en el Inicio del alumno | `feature/pc1-aviso-toque` | ⛔ Bloqueado | Espera a `feature/pc3-toques`. Arriba de `panel-alumno.tsx`: "Tu tutor te ha dado un toque: llevas N días sin apuntar" + botón "Apuntar ahora" (`/registro`); al verlo, `marcarVisto` |
 | Primera release `develop → main` | — | ✅ Hecho (PR #23, 29/10) | La nube ya tiene `datos_personales`, `identidad_alumno`, `chat_directo` y `chat_realtime`. Desde entonces `develop` suma `historial_dossier`: falta otra release |
-| Registrar en `container.ts` los backends nuevos de PC 3 | — | ⏳ Pendiente | Profes del instituto, informes, y después chat, clases, validar horas y toques |
+| Registrar en `container.ts` los backends nuevos de PC 3 | — | 🔄 En curso | `chat` e `informes` hechos (2026-10-29); faltan profes del instituto, clases, validar horas y toques |
 | Fusionar PR #17 (test de pantallas, PC 4) | `test/pc4-pantallas` | ⏳ Pendiente | 7 tests sobre las pantallas de develop; 126/126 en local |
 
 ### 🧪 PC 4 · Ayudante general · Marco
@@ -68,15 +68,15 @@ Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté e
 |---|---|---|---|
 | Inicio de la empresa: ritmo por calendario, avisos, informes por validar, últimas valoraciones, fechas y mensajes | `ui/vistas/panel-empresa.tsx`, `ui/utils/ritmo.ts` | ✅ Hecho | La marca de la barra son las horas que tocan hoy; avisos de sin apuntar, por debajo del ritmo y fin de prácticas |
 | Pestaña Validaciones (antes Calendario) para la empresa | `app/validaciones.tsx`, `ui/vistas/validaciones.tsx`, `app-tabs` | ✅ Hecho | Pendientes arriba, validadas abajo en tono flojo; Calendario se mantiene para los demás roles |
-| Chat de la empresa (un hilo por alumno y por profe) | `ui/vistas/chat-empresa.tsx`, `ui/utils/chat.ts`, `ui/estado/chat-empresa.ts` | ✅ Hecho (sin backend) | Mensajes en memoria; espera la tabla de la PR #13 y el módulo de PC 3 |
+| Chat de la empresa (un hilo por alumno y por profe) | `ui/vistas/chat-directo.tsx`, `ui/utils/chat.ts`, `ui/estado/chat-empresa.ts` | ✅ Hecho (con backend) | Desde el 2026-10-29 lee de `ChatPort`: tablas `chat_mensajes` y `chat_lecturas` con realtime. La pantalla pasó a `chat-directo.tsx`, compartida con alumno y profe; `chat-empresa.tsx` es un envoltorio |
 | Correo editable por el tutor de empresa | `core/domain/perfil.ts`, `core/application/perfil.ts`, `ports/perfil-port.ts`, adaptadores, `ui/vistas/perfil.tsx` | ✅ Hecho (falta migración) | `auth.updateUser` en Supabase; `perfiles.email` y `proteger_perfil` necesitan migración de PC 2 |
 | La valoración final del profe cierra los pendientes de la empresa | `ui/utils/validaciones.ts` | ✅ Hecho | Antes la empresa seguía viendo meses que ya no podía validar |
 | Revisar pestañas, `BarraProgreso` y Validaciones | PC 1 | ⏳ Pendiente | Zona de PC 1: `app-tabs.tsx`, `app-tabs.web.tsx`, `ui/components/barra-progreso.tsx` |
 | Migración del correo (`perfiles.email` + `proteger_perfil`) | PC 2 | ⏳ Pendiente | Trigger en `auth.users` y ajustar el trigger de perfiles, o retirar la columna |
-| Módulo de chat real y registro de informes en `container.ts` | PC 3 / PC 1 | ⛔ Bloqueado | Chat espera PR #13; informes esperan a que PC 1 los registre |
+| Módulo de chat real y registro de informes en `container.ts` | PC 3 / PC 1 | ✅ Hecho | `chat` e `informes` registrados el 2026-10-29 (`ChatSupabase`/`ChatMemory`, `InformesSupabase`/`InformesMemory`) |
 | e2e del flujo empresa → profe y del cambio de correo | PC 4 | ⏳ Pendiente | Arreglar también `login` y `registro-dia` (botón "Registrar hoy") |
 
-Ver [[2026-10-29]].
+Ver [[2026-10-29]] y [[2026-11-02]].
 
 ## Sprint 3 · Base completa · cerrado el 2026-10-28
 
@@ -159,5 +159,10 @@ Solo diseño, `e2e/` y el panel web.
 | Sprint 4: revisión de PR #13-15 y #18 (aprobadas) y #16 (comentarios sobre zona de PC 1) | PC 4 | 2026-10-28 |
 | Sprint 4: test de pantallas rehacido para las pantallas de `develop` (PR #17) | PC 4 | 2026-10-28 |
 | Sprint 4: e2e de registro adaptados al calendario plegable (PR #12, esperando fusión) | PC 4 | 2026-10-28 |
+| Sprint 4: chat directo de persona a persona (dominio, puerto, casos de uso, adaptadores, `chat_directo`, `chat_realtime` y realtime) | Izan | 2026-10-29 |
+| Sprint 4: DNI del alumno en solo lectura (`identidad_alumno`) y perfil redistribuido | Izan | 2026-10-29 |
+| Sprint 4: buscar alumno y empresa por nombre o correo en el formulario de dossier | Izan | 2026-10-29 |
+| Sprint 4: script de datos de demostración con centros, empresas y personas inventadas | Izan | 2026-10-29 |
+| Sprint 4: errores de sesión con reintento en vez de caer a «alumno» | Izan | 2026-10-29 |
 
 Estados: ⏳ Pendiente · 🔄 En curso · 👀 En revisión · ✅ Hecho · ⛔ Bloqueado
