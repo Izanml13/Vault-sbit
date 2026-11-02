@@ -18,14 +18,14 @@ Volver a [[Inicio]] · Ver [[Reparto por PCs]]
 |---|---|---|---|
 | Chat de mensajes por dossier | `feature/pc2-db-chat` | 👀 En revisión (PR #13) | Tabla `mensajes_chat`. Leen y escriben alumno, profe tutor, empresa e instituto; Generalitat solo lee. ✅ Aprobada por PC 4. ⚠️ **Solapa con `chat_directo`** (Izan, ya en `main`): chat de persona a persona. Decidir si se cierra la #13 o si queda como chat de grupo del dossier. El chat de persona a persona ya tiene backend en `develop`: ver [[2026-11-02]] |
 | Clases (grupos) y clase de cada alumno | `feature/pc2-db-clases` | 👀 En revisión (PR #14) | Tabla `grupos` + `perfiles.grupo_id`. Instituto y Generalitat gestionan. ✅ Aprobada por PC 4 |
-| Doble validación de horas | `feature/pc2-db-validar-horas` | 👀 En revisión (PR #15) | Empresa valida primero, luego el profe. Día validado = no se edita ni borra. PC 1: el dominio necesita los 4 campos nuevos. ✅ Aprobada por PC 4. ⚠️ **Revisar antes de fusionar:** valida **por día**, pero [[Cuentas, datos y validación]] dice que la empresa valida **el mes**, y la pestaña Validaciones (PR #22) ya trabaja por mes. Probablemente hay que rehacerla por mes |
+| Doble validación de horas: el profe confirma el mes | `feature/pc2-db-validar-mes` | 👀 En revisión (PR #26, CI ✅) | **Sustituye a la #15 (cerrada)**: la validación es mensual. La empresa ya valida el mes con la valoración mensual; esto añade `confirmada_por`/`confirmada_en` en `valoraciones_mensuales`. Solo el profe tutor confirma; un mes confirmado no lo toca la empresa |
 | Profe: Inicio (inbox, horas por validar, sin apuntar con toque) y pestaña Seguimiento | `feature/pc2-inicio-profe` | ✅ Hecho (PR #16, en `develop`) | Según la pizarra del 28/10. Toca `app-tabs` (pestaña Seguimiento para el profe): revisar PC 1. 💬 Comentarios de PC 4: también toca `package.json` (+`react-native-svg`) y arrastra commits de `feature/pc1-calendario-apple`; que decidan PC 1 e Izan |
 | Profe con el estilo del alumno: Inicio y Seguimiento (lista compacta) | `feature/pc2-estilo-profe`, `feature/pc2-estilo-seguimiento` | ✅ Hecho (PR #19 y #21, en `develop`) | |
 | Toques de atención del profe al alumno | `feature/pc2-db-toques` | 👀 En revisión (PR #18) | Tabla `toques`, uno al día, se resuelve al apuntar. Falta `ToquePort` (PC 3) y aviso en el Inicio del alumno (PC 1). ✅ Aprobada por PC 4 |
 
-| Correo del tutor de empresa: copiar `auth.users.email` a `perfiles.email` | `feature/pc2-db-correo` | ⏳ Pendiente | Pedido en [[2026-10-29]]: trigger `after update of email on auth.users` y ajustar `proteger_perfil` (o retirar `perfiles.email`) |
+| Correo del tutor de empresa: `perfiles.email` sigue a `auth.users.email` | `feature/pc2-db-correo` | 👀 En revisión (PR #27, CI ✅) | Trigger en `auth.users` + `proteger_perfil` solo deja poner el correo de la cuenta. La app no cambia |
 
-Las cuatro PR de base de datos (#13, #14, #15 y #18) siguen abiertas y sin conflictos con `develop` a 2026-11-02; añaden un bloque al final de `seed.sql`: si hay conflicto al fusionar, quedarse con todos. Probadas juntas. #14 (clases) y #18 (toques) no chocan con nada de lo nuevo.
+Las PR de base de datos abiertas (#13, #14, #18, #26 y #27) siguen y sin conflictos con `develop` a 2026-11-02; añaden un bloque al final de `seed.sql`: si hay conflicto al fusionar, quedarse con todos. Probadas juntas. #14 (clases) y #18 (toques) no chocan con nada de lo nuevo.
 
 ### ⚙️ PC 3 · Backend · OpenCode
 
@@ -35,7 +35,7 @@ Las cuatro PR de base de datos (#13, #14, #15 y #18) siguen abiertas y sin confl
 | Informes por rol | `feature/pc3-informes` | ✅ En `develop` | Solo lectura: alumno (horas totales y por mes), profe y empresa (progreso de sus alumnos), instituto (por profe y por empresa), Generalitat (por centro). 16 tests. ✅ PC 1 lo registró en `container.ts` el 2026-10-29 (`informes`) |
 | Chat por dossier | `feature/pc3-chat` | ⛔ Bloqueado | Espera a `feature/pc2-db-chat` (PR #13). ⚠️ El chat directo de persona a persona ya está en `develop` con su propio módulo: ver [[2026-11-02]] |
 | Clases (grupos) y "mis clases" del profe | `feature/pc3-clases` | ⛔ Bloqueado | Espera a `feature/pc2-db-clases` (PR #14) |
-| Doble validación de horas | `feature/pc3-validar-horas` | ⛔ Bloqueado | Espera a `feature/pc2-db-validar-horas` (PR #15). El Inicio del profe (PR #16) necesita listar los días ya validados por la empresa y pendientes del profe, y validar varios de una vez |
+| Doble validación de horas | `feature/pc3-validar-horas` | ⛔ Bloqueado | Espera a `feature/pc2-db-validar-mes` (PR #26, sustituye a la #15): `ValoracionMensual` con `confirmadaPor`/`confirmadaEn` y `confirmarMes`/`quitarConfirmacion`. El Inicio del profe (PR #16) necesita listar los días ya validados por la empresa y pendientes del profe, y validar varios de una vez |
 | Toques de atención | `feature/pc3-toques` | ⛔ Bloqueado | Espera a `feature/pc2-db-toques` (PR #18). `ToquePort`: `dar(dossierId, diasSinApuntar)`, `pendientesDelAlumno()`, `ultimosPorDossier(ids)` y `marcarVisto(id)`; adaptadores memoria y Supabase. Detalle en la PR #18 |
 
 Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté en `develop`: el dominio sale de la tabla, no al revés. El progreso por clase de los informes llegará con los grupos; hasta entonces el profe ve a sus alumnos.
@@ -72,7 +72,7 @@ Los tres bloqueados no se pueden modelar hasta que la migración de PC 2 esté e
 | Correo editable por el tutor de empresa | `core/domain/perfil.ts`, `core/application/perfil.ts`, `ports/perfil-port.ts`, adaptadores, `ui/vistas/perfil.tsx` | ✅ Hecho (falta migración) | `auth.updateUser` en Supabase; `perfiles.email` y `proteger_perfil` necesitan migración de PC 2 |
 | La valoración final del profe cierra los pendientes de la empresa | `ui/utils/validaciones.ts` | ✅ Hecho | Antes la empresa seguía viendo meses que ya no podía validar |
 | Revisar pestañas, `BarraProgreso` y Validaciones | PC 1 | ⏳ Pendiente | Zona de PC 1: `app-tabs.tsx`, `app-tabs.web.tsx`, `ui/components/barra-progreso.tsx` |
-| Migración del correo (`perfiles.email` + `proteger_perfil`) | PC 2 | ⏳ Pendiente | Trigger en `auth.users` y ajustar el trigger de perfiles, o retirar la columna |
+| Migración del correo (`perfiles.email` + `proteger_perfil`) | PC 2 | 👀 En revisión (PR #27) | Trigger en `auth.users` y ajustar el trigger de perfiles, o retirar la columna |
 | Módulo de chat real y registro de informes en `container.ts` | PC 3 / PC 1 | ✅ Hecho | `chat` e `informes` registrados el 2026-10-29 (`ChatSupabase`/`ChatMemory`, `InformesSupabase`/`InformesMemory`) |
 | e2e del flujo empresa → profe y del cambio de correo | PC 4 | ⏳ Pendiente | Arreglar también `login` y `registro-dia` (botón "Registrar hoy") |
 
